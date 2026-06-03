@@ -5,7 +5,7 @@ include '../../templates/header.php';
 ?>
 
 <div class="container">
-    <div class="card auth-card p-4">
+    <div class="card auth-card p-4 animate-up">
         <div class="card-body">
             <h3 class="text-center mb-4 fw-bold">Registrasi</h3>
             <p class="text-muted text-center mb-4">Buat akun baru SPK VIKOR</p>

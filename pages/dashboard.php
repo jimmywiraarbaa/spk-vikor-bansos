@@ -40,7 +40,7 @@ include '../templates/header.php';
 
         <!-- Main Content Body -->
         <div class="main-content">
-            <div class="row mb-4">
+            <div class="row mb-4 animate-up">
                 <div class="col-12">
                     <h4 class="fw-bold">Dashboard Overview</h4>
                     <p class="text-muted">Selamat datang kembali di panel kendali SPK VIKOR.</p>
@@ -48,7 +48,7 @@ include '../templates/header.php';
             </div>
 
             <!-- Stats Cards -->
-            <div class="row g-4 mb-5">
+            <div class="row g-4 mb-5 animate-up delay-1">
                 <div class="col-sm-6 col-md-3">
                     <div class="card p-3 h-100 border-start border-danger border-4">
                         <div class="card-body">

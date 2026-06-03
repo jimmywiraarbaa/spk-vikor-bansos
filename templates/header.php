@@ -108,6 +108,30 @@
             transform: rotate(180deg);
         }
 
+        /* Page Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate3d(0, 20px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translate3d(-30px, 0, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translate3d(30px, 0, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        .animate-up { animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+        .animate-left { animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+        .animate-right { animation: fadeInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
         /* Hide Bootstrap default caret */
         #sidebar ul ul li a {
             padding: 10px 25px 10px 55px !important;
