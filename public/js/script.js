@@ -33,6 +33,25 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.addEventListener('click', toggleSidebar);
     }
 
+    // Login Loading Animation
+    const loginForm = document.querySelector('#loginForm');
+    const loginBtn = document.querySelector('#loginBtn');
+    const loginSpinner = document.querySelector('#loginSpinner');
+    const loginText = document.querySelector('#loginText');
+
+    if (loginForm && loginBtn) {
+        loginForm.addEventListener('submit', function() {
+            // Show spinner and change text immediately
+            if (loginSpinner) loginSpinner.classList.remove('d-none');
+            if (loginText) loginText.innerText = ' Memproses...';
+            
+            // Disable button after a very short delay to ensure form data is sent
+            setTimeout(() => {
+                loginBtn.disabled = true;
+            }, 50);
+        });
+    }
+
     // Auto-hide sidebar on window resize if needed
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {

@@ -50,7 +50,8 @@ include '../../templates/header.php';
                         </div>
                     <?php endif; ?>
 
-                    <form action="../../actions/auth_action.php" method="POST">
+                    <form action="../../actions/auth_action.php" method="POST" id="loginForm">
+                        <input type="hidden" name="login" value="1">
                         <div class="mb-3">
                             <label class="form-label text-secondary small fw-bold">USERNAME</label>
                             <input type="text" name="username" class="form-control form-control-lg bg-light border-0" style="font-size: 0.95rem;" required placeholder="Masukkan username">
@@ -64,7 +65,10 @@ include '../../templates/header.php';
                                 </button>
                             </div>
                         </div>
-                        <button type="submit" name="login" class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">Login</button>
+                        <button type="submit" name="login" id="loginBtn" class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">
+                            <span class="spinner-border spinner-border-sm d-none" id="loginSpinner" role="status" aria-hidden="true"></span>
+                            <span id="loginText">Login Sekarang</span>
+                        </button>
                     </form>
 
                     <!-- <div class="text-center">
