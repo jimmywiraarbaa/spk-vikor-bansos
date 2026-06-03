@@ -7,15 +7,17 @@ include '../../templates/header.php';
 <div class="container-fluid vh-100">
     <div class="row h-100">
         <!-- Sisi Kiri: Judul Sistem -->
-        <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 text-center animate-left" style="background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%) !important;">
+        <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 text-center animate-left"
+            style="background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%) !important;">
             <h1 class="display-4 fw-bold mb-4">SPK VIKOR</h1>
             <h2 class="h4 mb-4 fw-light" style="line-height: 1.6;">
-                SISTEM PENDUKUNG KEPUTUSAN PENENTUAN PENERIMA BANTUAN LANGSUNG TUNAI KESEJAHTERAAN 
+                SISTEM PENDUKUNG KEPUTUSAN PENENTUAN PENERIMA BANTUAN LANGSUNG TUNAI KESEJAHTERAAN
                 MENGGUNAKAN METODE VIKOR <br>
                 <span class="small opacity-75">(VlseKriterijumska Optimizacija I Kompromisno Resenje)</span>
             </h2>
             <hr class="w-25 border-white opacity-50 mb-4">
-            <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo Instansi" class="mb-4" style="max-height: 120px; width: auto;">
+            <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo Instansi" class="mb-4"
+                style="max-height: 120px; width: auto;">
             <h3 class="h5 fw-normal">
                 PADA DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN, <br>
                 DAN PERLINDUNGAN ANAK KABUPATEN MERANGIN
@@ -54,19 +56,24 @@ include '../../templates/header.php';
                         <input type="hidden" name="login" value="1">
                         <div class="mb-3">
                             <label class="form-label text-secondary small fw-bold">USERNAME</label>
-                            <input type="text" name="username" class="form-control form-control-lg bg-light border-0" style="font-size: 0.95rem;" required placeholder="Masukkan username">
+                            <input type="text" name="username" class="form-control form-control-lg bg-light border-0"
+                                style="font-size: 0.95rem;" required placeholder="Masukkan username">
                         </div>
                         <div class="mb-4">
                             <label class="form-label text-secondary small fw-bold">PASSWORD</label>
                             <div class="input-group">
-                                <input type="password" name="password" id="password" class="form-control form-control-lg bg-light border-0" style="font-size: 0.95rem;" required placeholder="Masukkan password">
+                                <input type="password" name="password" id="password"
+                                    class="form-control form-control-lg bg-light border-0" style="font-size: 0.95rem;"
+                                    required placeholder="Masukkan password">
                                 <button class="btn btn-light border-0 bg-light" type="button" id="togglePassword">
                                     <i class="bi bi-eye-slash" id="eyeIcon"></i>
                                 </button>
                             </div>
                         </div>
-                        <button type="submit" name="login" id="loginBtn" class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">
-                            <span class="spinner-border spinner-border-sm d-none" id="loginSpinner" role="status" aria-hidden="true"></span>
+                        <button type="submit" name="login" id="loginBtn"
+                            class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">
+                            <span class="spinner-border spinner-border-sm d-none" id="loginSpinner" role="status"
+                                aria-hidden="true"></span>
                             <span id="loginText">Login Sekarang</span>
                         </button>
                     </form>
@@ -75,7 +82,8 @@ include '../../templates/header.php';
                         <span class="small text-muted">Belum punya akun? <a href="register.php" class="text-decoration-none fw-bold">Daftar Akun</a></span>
                     </div> -->
                     <div class="text-center">
-                        <span class="small text-muted"><a href="forgot_password.php" class="text-decoration-none fw-bold">Lupa Password?</a></span>
+                        <span class="small text-muted"><a href="forgot_password.php"
+                                class="text-decoration-none fw-bold">Lupa Password? wkwkw</a></span>
                     </div>
                 </div>
             </div>
