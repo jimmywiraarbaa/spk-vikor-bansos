@@ -83,7 +83,7 @@ include '../../templates/header.php';
                     </div> -->
                     <div class="text-center">
                         <span class="small text-muted"><a href="forgot_password.php"
-                                class="text-decoration-none fw-bold">Lupa Password? wkwkw</a></span>
+                                class="text-decoration-none fw-bold">Lupa Password?</a></span>
                     </div>
                 </div>
             </div>
