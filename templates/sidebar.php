@@ -1,0 +1,55 @@
+<!-- templates/sidebar.php -->
+<nav id="sidebar">
+    <div class="sidebar-header text-center">
+        <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo" class="img-fluid mb-2" style="max-height: 60px;">
+        <h5 class="fw-bold mb-0" style="color: #d9534f;">SPK VIKOR</h5>
+        <small class="text-muted">Dinas Sosial Merangin</small>
+    </div>
+
+    <ul class="list-unstyled components">
+
+        <li class="<?php echo (basename($_SERVER['PHP_SELF']) == 'dashboard.php') ? 'active' : ''; ?>">
+            <a href="<?php echo base_url('pages/dashboard.php'); ?>">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+        </li>
+
+        <div class="menu-label">Data Master</div>
+        <li>
+            <a href="#dataKriteriaMenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-list-task"></i> Data Master</span>
+                <i class="bi bi-chevron-down arrow-icon"></i>
+            </a>
+            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria') !== false || strpos($_SERVER['PHP_SELF'], 'alternatif') !== false) ? 'show' : ''; ?>" id="dataKriteriaMenu">
+                <li><a href="#">Data Kriteria</a></li>
+                <li><a href="#">Data Alternatif</a></li>
+                <li><a href="#">Data Sub-Kriteria</a></li>
+            </ul>
+        </li>
+
+        <div class="menu-label">Analisis</div>
+        <li>
+            <a href="#prosesMenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-calculator"></i> Proses VIKOR</span>
+                <i class="bi bi-chevron-down arrow-icon"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="prosesMenu">
+                <li><a href="#">Input Penilaian</a></li>
+                <li><a href="#">Hasil Perhitungan</a></li>
+                <li><a href="#">Ranking</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bi bi-file-earmark-bar-graph"></i> Laporan
+            </a>
+        </li>
+
+        <div class="menu-label">Sistem</div>
+        <li>
+            <a href="<?php echo base_url('actions/auth_action.php?logout=1'); ?>" class="text-danger">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+        </li>
+    </ul>
+</nav>

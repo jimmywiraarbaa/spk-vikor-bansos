@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,24 +16,173 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f7f6;
         }
-        .auth-card {
-            max-width: 400px;
-            margin: 100px auto;
+
+        /* Sidebar Styles */
+        #wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #ffffff;
+            color: #333;
+            transition: all 0.3s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.02);
+            z-index: 1000;
+            min-height: 100vh;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+        }
+#sidebar ul li a {
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    display: block;
+    color: #555;
+    text-decoration: none !important;
+    transition: 0.2s;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    outline: none;
+}
+
+/* Hide Bootstrap default caret */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Submenu Styles */
+        #sidebar ul li a:hover {
+            color: #d9534f;
+            background: #fff5f5;
+            border-left: 4px solid #d9534f;
+        }
+
+        #sidebar ul li.active>a {
+            color: #d9534f;
+            background: #fff5f5;
+            border-left: 4px solid #d9534f;
+        }
+
+        #sidebar ul li a i:first-child {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .arrow-icon {
+            font-size: 0.8rem;
+            color: #adb5bd;
+            transition: transform 0.3s ease;
+        }
+
+        #sidebar ul li a[aria-expanded="true"] .arrow-icon {
+            transform: rotate(180deg);
+            color: #d9534f;
+        }
+
+        /* Hide Bootstrap default caret */
+        #sidebar ul ul li a {
+            padding: 10px 25px 10px 55px !important;
+            font-size: 0.85rem !important;
+            background: #fbfbfb;
+        }
+
+        #sidebar .menu-label {
+            padding: 20px 25px 10px 25px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #adb5bd;
+            letter-spacing: 1px;
+        }
+
+        /* Content Styles */
+        #content {
+            width: 100%;
+            padding: 0;
+            min-height: 100vh;
+            transition: all 0.3s;
+            background-color: #f4f7f6;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .top-navbar {
+            padding: 10px 20px;
+            background: #fff;
+            border-bottom: 1px solid #f1f1f1;
+            position: sticky;
+            top: 0;
+            z-index: 997;
+        }
+
+        .main-content {
+            padding: 25px;
+        }
+
+        .card {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
         }
-        .btn-primary {
-            background-color: #4e73df;
-            border: none;
-            padding: 10px;
-            font-weight: 600;
+
+        .card:hover {
+            transform: translateY(-3px);
         }
-        .btn-primary:hover {
-            background-color: #2e59d9;
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+                position: fixed;
+                height: 100%;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .top-navbar {
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="overlay"></div>
