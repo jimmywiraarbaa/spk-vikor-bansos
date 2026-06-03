@@ -21,8 +21,12 @@
                 <i class="bi bi-chevron-down arrow-icon"></i>
             </a>
             <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria') !== false || strpos($_SERVER['PHP_SELF'], 'alternatif') !== false) ? 'show' : ''; ?>" id="dataKriteriaMenu">
-                <li><a href="#">Data Kriteria</a></li>
-                <li><a href="#">Data Alternatif</a></li>
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo base_url('pages/kriteria/index.php'); ?>">Data Kriteria</a>
+                </li>
+                <li>
+                    <a href="#">Data Alternatif</a>
+                </li>
                 <li><a href="#">Data Sub-Kriteria</a></li>
             </ul>
         </li>
