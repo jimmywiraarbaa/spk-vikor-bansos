@@ -7,7 +7,7 @@ include '../../templates/header.php';
 <div class="container-fluid vh-100">
     <div class="row h-100">
         <!-- Sisi Kiri: Judul Sistem -->
-        <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-center align-items-center bg-primary text-white p-5 text-center" style="background: linear-gradient(135deg, #4e73df 0%, #224abe 100%) !important;">
+        <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 text-center" style="background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%) !important;">
             <h1 class="display-4 fw-bold mb-4">SPK VIKOR</h1>
             <h2 class="h4 mb-4 fw-light" style="line-height: 1.6;">
                 SISTEM PENDUKUNG KEPUTUSAN PENENTUAN PENERIMA BANTUAN LANGSUNG TUNAI KESEJAHTERAAN
@@ -15,6 +15,7 @@ include '../../templates/header.php';
                 <span class="small opacity-75">(VlseKriterijumska Optimizacija I Kompromisno Resenje)</span>
             </h2>
             <hr class="w-25 border-white opacity-50 mb-4">
+            <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo Instansi" class="mb-4" style="max-height: 220px; width: auto;">
             <h3 class="h5 fw-normal">
                 PADA DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN, <br>
                 DAN PERLINDUNGAN ANAK KABUPATEN MERANGIN
@@ -66,9 +67,9 @@ include '../../templates/header.php';
                         <button type="submit" name="login" class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">Login</button>
                     </form>
 
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <span class="small text-muted">Belum punya akun? <a href="register.php" class="text-decoration-none fw-bold">Daftar Akun</a></span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
