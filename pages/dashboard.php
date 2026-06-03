@@ -24,6 +24,7 @@ include '../templates/header.php';
                                 <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
                             </div>
                             <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
+                            <i class="bi bi-chevron-down user-arrow-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3" aria-labelledby="dropdownUser">
                             <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i> Profil</a></li>

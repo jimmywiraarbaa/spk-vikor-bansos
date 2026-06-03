@@ -97,6 +97,17 @@
             color: #d9534f;
         }
 
+        .user-arrow-icon {
+            font-size: 0.7rem;
+            color: #adb5bd;
+            transition: transform 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .dropdown-toggle[aria-expanded="true"] .user-arrow-icon {
+            transform: rotate(180deg);
+        }
+
         /* Hide Bootstrap default caret */
         #sidebar ul ul li a {
             padding: 10px 25px 10px 55px !important;
