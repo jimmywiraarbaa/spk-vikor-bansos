@@ -74,6 +74,9 @@ include '../../templates/header.php';
                     <!-- <div class="text-center">
                         <span class="small text-muted">Belum punya akun? <a href="register.php" class="text-decoration-none fw-bold">Daftar Akun</a></span>
                     </div> -->
+                    <div class="text-center">
+                        <span class="small text-muted"><a href="forgot_password.php" class="text-decoration-none fw-bold">Lupa Password?</a></span>
+                    </div>
                 </div>
             </div>
         </div>
