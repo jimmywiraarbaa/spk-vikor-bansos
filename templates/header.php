@@ -6,10 +6,12 @@
     <title>SPK VIKOR BANSOS</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/spk-vikor-bansos/public/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/style.css'); ?>">
     <style>
         body {
             font-family: 'Inter', sans-serif;

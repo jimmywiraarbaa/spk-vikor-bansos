@@ -28,7 +28,12 @@ include '../../templates/header.php';
                 </div>
                 <div class="mb-4">
                     <label class="form-label text-secondary small fw-bold">PASSWORD</label>
-                    <input type="password" name="password" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Minimal 6 karakter">
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Minimal 6 karakter">
+                        <button class="btn btn-light border-0 bg-light" type="button" id="togglePassword">
+                            <i class="bi bi-eye-slash" id="eyeIcon"></i>
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" name="register" class="btn btn-primary w-100 mb-3">Daftar Akun</button>
             </form>

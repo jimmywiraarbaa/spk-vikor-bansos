@@ -1,0 +1,34 @@
+/* public/css/style.css */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.auth-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.input-group .btn {
+    z-index: 4;
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
