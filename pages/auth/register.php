@@ -1,7 +1,7 @@
 <?php
 require_once '../../includes/auth_helper.php';
 isGuest();
-include '../../templates/header.php';
+include_once '../../templates/header.php';
 ?>
 
 <div class="container">
@@ -19,15 +19,15 @@ include '../../templates/header.php';
 
             <form action="../../actions/auth_action.php" method="POST">
                 <div class="mb-3">
-                    <label class="form-label text-secondary small fw-bold">NAMA LENGKAP</label>
-                    <input type="text" name="nama_lengkap" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Nama lengkap">
+                    <label for="nama_lengkap" class="form-label text-secondary small fw-bold">NAMA LENGKAP</label>
+                    <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Nama lengkap">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label text-secondary small fw-bold">USERNAME</label>
-                    <input type="text" name="username" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Pilih username">
+                    <label for="username" class="form-label text-secondary small fw-bold">USERNAME</label>
+                    <input type="text" name="username" id="username" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Pilih username">
                 </div>
                 <div class="mb-4">
-                    <label class="form-label text-secondary small fw-bold">PASSWORD</label>
+                    <label for="password" class="form-label text-secondary small fw-bold">PASSWORD</label>
                     <div class="input-group">
                         <input type="password" name="password" id="password" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Minimal 6 karakter">
                         <button class="btn btn-light border-0 bg-light" type="button" id="togglePassword">
@@ -45,4 +45,4 @@ include '../../templates/header.php';
     </div>
 </div>
 
-<?php include '../../templates/footer.php'; ?>
+<?php include_once '../../templates/footer.php'; ?>

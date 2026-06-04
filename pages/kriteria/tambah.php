@@ -1,12 +1,12 @@
 <?php
 require_once '../../includes/auth_helper.php';
 checkLogin();
-include '../../templates/header.php';
+include_once '../../templates/header.php';
 ?>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include '../../templates/sidebar.php'; ?>
+    <?php include_once '../../templates/sidebar.php'; ?>
 
     <!-- Page Content -->
     <div id="content">
@@ -40,22 +40,22 @@ include '../../templates/header.php';
                         <form action="../../actions/kriteria_action.php" method="POST">
                             <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label class="form-label small fw-bold text-secondary">KODE KRITERIA</label>
-                                    <input type="text" name="kode" class="form-control bg-light border-0" placeholder="Contoh: C1" required>
+                                    <label for="kode" class="form-label small fw-bold text-secondary">KODE KRITERIA</label>
+                                    <input type="text" name="kode" id="kode" class="form-control bg-light border-0" placeholder="Contoh: C1" required>
                                 </div>
                                 <div class="col-md-8">
-                                    <label class="form-label small fw-bold text-secondary">NAMA KRITERIA</label>
-                                    <input type="text" name="nama" class="form-control bg-light border-0" placeholder="Contoh: Penghasilan" required>
+                                    <label for="nama" class="form-label small fw-bold text-secondary">NAMA KRITERIA</label>
+                                    <input type="text" name="nama" id="nama" class="form-control bg-light border-0" placeholder="Contoh: Penghasilan" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label small fw-bold text-secondary">SIFAT KRITERIA</label>
-                                    <select name="sifat" class="form-select bg-light border-0" required>
+                                    <label for="sifat" class="form-label small fw-bold text-secondary">SIFAT KRITERIA</label>
+                                    <select name="sifat" id="sifat" class="form-select bg-light border-0" required>
                                         <option value="cost">Cost (Semakin kecil semakin baik)</option>
                                         <option value="benefit">Benefit (Semakin besar semakin baik)</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label small fw-bold text-secondary">BOBOT (Wi)</label>
+                                    <label for="bobot" class="form-label small fw-bold text-secondary">BOBOT (Wi)</label>
                                     <div class="input-group">
                                         <input type="number" step="0.01" name="bobot" class="form-control bg-light border-0" placeholder="Contoh: 0.30" required>
                                         <span class="input-group-text bg-light border-0"><i class="bi bi-percent small"></i></span>
@@ -63,8 +63,8 @@ include '../../templates/header.php';
                                     <div class="form-text small">Gunakan desimal (misal 0.30 untuk 30%).</div>
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label small fw-bold text-secondary">PENJELASAN</label>
-                                    <textarea name="penjelasan" class="form-control bg-light border-0" rows="3" placeholder="Jelaskan alasan kriteria ini digunakan..."></textarea>
+                                    <label for="penjelasan" class="form-label small fw-bold text-secondary">PENJELASAN</label>
+                                    <textarea name="penjelasan" id="penjelasan" class="form-control bg-light border-0" rows="3" placeholder="Jelaskan alasan kriteria ini digunakan..."></textarea>
                                 </div>
                                 <div class="col-12 mt-4">
                                     <button type="submit" name="tambah" class="btn btn-danger px-5 py-2 rounded-pill shadow-sm">
@@ -80,4 +80,4 @@ include '../../templates/header.php';
     </div>
 </div>
 
-<?php include '../../templates/footer.php'; ?>
+<?php include_once '../../templates/footer.php'; ?>

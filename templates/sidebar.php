@@ -1,7 +1,7 @@
 <!-- templates/sidebar.php -->
 <nav id="sidebar">
     <div class="sidebar-header text-center">
-        <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo" class="img-fluid mb-2" style="max-height: 60px;">
+        <img src="<?php echo baseUrl('public/img/logo-remove-bg.png'); ?>" alt="Logo" class="img-fluid mb-2" style="max-height: 60px;">
         <h5 class="fw-bold mb-0" style="color: #d9534f;">SPK VIKOR</h5>
         <small class="text-muted">Dinas Sosial Merangin</small>
     </div>
@@ -9,7 +9,7 @@
     <ul class="list-unstyled components">
 
         <li class="<?php echo (basename($_SERVER['PHP_SELF']) == 'dashboard.php') ? 'active' : ''; ?>">
-            <a href="<?php echo base_url('pages/dashboard.php'); ?>">
+            <a href="<?php echo baseUrl('pages/dashboard.php'); ?>">
                 <i class="bi bi-speedometer2"></i> Dashboard
             </a>
         </li>
@@ -22,7 +22,7 @@
             </a>
             <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria') !== false || strpos($_SERVER['PHP_SELF'], 'alternatif') !== false) ? 'show' : ''; ?>" id="dataKriteriaMenu">
                 <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria/') !== false) ? 'active' : ''; ?>">
-                    <a href="<?php echo base_url('pages/kriteria/index.php'); ?>">Data Kriteria</a>
+                    <a href="<?php echo baseUrl('pages/kriteria/index.php'); ?>">Data Kriteria</a>
                 </li>
                 <li>
                     <a href="#">Data Alternatif</a>
@@ -51,7 +51,7 @@
 
         <div class="menu-label">Sistem</div>
         <li>
-            <a href="<?php echo base_url('actions/auth_action.php?logout=1'); ?>" class="text-danger">
+            <a href="<?php echo baseUrl('actions/auth_action.php?logout=1'); ?>" class="text-danger">
                 <i class="bi bi-box-arrow-right"></i> Logout
             </a>
         </li>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
@@ -11,14 +11,13 @@ if (isset($_POST['register'])) {
     try {
         $stmt = $pdo->prepare("INSERT INTO users (username, password, nama_lengkap) VALUES (?, ?, ?)");
         $stmt->execute([$username, $password, $nama_lengkap]);
-        
+
         $_SESSION['success'] = "Registrasi berhasil, silakan login.";
-        header("Location: ../pages/auth/login.php");
+        redirect('pages/auth/login.php');
     } catch (PDOException $e) {
         $_SESSION['error'] = "Registrasi gagal: " . $e->getMessage();
-        header("Location: ../pages/auth/register.php");
+        redirect('pages/auth/register.php');
     }
-    exit;
 }
 
 if (isset($_POST['login'])) {
@@ -33,17 +32,16 @@ if (isset($_POST['login'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        
-        header("Location: ../pages/dashboard.php");
+
+        redirect('pages/dashboard.php');
     } else {
         $_SESSION['error'] = "Username atau password salah.";
-        header("Location: ../pages/auth/login.php");
+        redirect('pages/auth/login.php');
     }
-    exit;
 }
 
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: ../pages/auth/login.php");
-    exit;
+    redirect('pages/auth/login.php');
 }
+

@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('public/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo baseUrl('public/css/style.css'); ?>">
     <style>
         body {
             font-family: 'Inter', sans-serif;

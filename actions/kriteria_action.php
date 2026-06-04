@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 // Tambah Kriteria
 if (isset($_POST['tambah'])) {
@@ -14,14 +14,13 @@ if (isset($_POST['tambah'])) {
     try {
         $stmt = $pdo->prepare("INSERT INTO kriteria (kode, nama, sifat, bobot, penjelasan) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$kode, $nama, $sifat, $bobot, $penjelasan]);
-        
+
         $_SESSION['success'] = "Data kriteria berhasil ditambahkan.";
-        header("Location: ../pages/kriteria/index.php");
+        redirect('pages/kriteria/index.php');
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menambah data: " . $e->getMessage();
-        header("Location: ../pages/kriteria/tambah.php");
+        redirect('pages/kriteria/tambah.php');
     }
-    exit;
 }
 
 // Edit Kriteria
@@ -36,14 +35,13 @@ if (isset($_POST['edit'])) {
     try {
         $stmt = $pdo->prepare("UPDATE kriteria SET kode = ?, nama = ?, sifat = ?, bobot = ?, penjelasan = ? WHERE id = ?");
         $stmt->execute([$kode, $nama, $sifat, $bobot, $penjelasan, $id]);
-        
+
         $_SESSION['success'] = "Data kriteria berhasil diperbarui.";
-        header("Location: ../pages/kriteria/index.php");
+        redirect('pages/kriteria/index.php');
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal memperbarui data: " . $e->getMessage();
-        header("Location: ../pages/kriteria/edit.php?id=" . $id);
+        redirect('pages/kriteria/edit.php?id=' . $id);
     }
-    exit;
 }
 
 // Hapus Kriteria
@@ -53,11 +51,11 @@ if (isset($_GET['delete'])) {
     try {
         $stmt = $pdo->prepare("DELETE FROM kriteria WHERE id = ?");
         $stmt->execute([$id]);
-        
+
         $_SESSION['success'] = "Data kriteria berhasil dihapus.";
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menghapus data: " . $e->getMessage();
     }
-    header("Location: ../pages/kriteria/index.php");
-    exit;
+    redirect('pages/kriteria/index.php');
 }
+

@@ -4,7 +4,7 @@
 /**
  * Mendapatkan base URL secara dinamis
  */
-function base_url($path = '') {
+function baseUrl($path = '') {
     $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
     $host = $_SERVER['HTTP_HOST'];
     
@@ -29,9 +29,9 @@ function base_url($path = '') {
 }
 
 /**
- * Redirect ke halaman tertentu menggunakan base_url
+ * Redirect ke halaman tertentu menggunakan baseUrl
  */
 function redirect($path) {
-    header("Location: " . base_url($path));
+    header("Location: " . baseUrl($path));
     exit;
 }

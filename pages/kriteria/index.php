@@ -2,7 +2,7 @@
 require_once '../../includes/auth_helper.php';
 require_once '../../includes/db.php';
 checkLogin();
-include '../../templates/header.php';
+include_once '../../templates/header.php';
 
 // Ambil data kriteria
 $stmt = $pdo->query("SELECT * FROM kriteria ORDER BY kode ASC");
@@ -11,12 +11,12 @@ $kriteria = $stmt->fetchAll();
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include '../../templates/sidebar.php'; ?>
+    <?php include_once '../../templates/sidebar.php'; ?>
 
     <!-- Page Content -->
     <div id="content">
         <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-lg top-navbar">
+        <nav class="navbar navbar-expand-lg top-navbar" aria-label="Navigasi Kriteria">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse" class="btn btn-light border-0">
                     <i class="bi bi-list"></i>
@@ -31,7 +31,7 @@ $kriteria = $stmt->fetchAll();
                             <i class="bi bi-chevron-down user-arrow-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3">
-                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo base_url('actions/auth_action.php?logout=1'); ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo baseUrl('actions/auth_action.php?logout=1'); ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -112,4 +112,4 @@ $kriteria = $stmt->fetchAll();
     </div>
 </div>
 
-<?php include '../../templates/footer.php'; ?>
+<?php include_once '../../templates/footer.php'; ?>
