@@ -26,6 +26,10 @@ include_once '../../templates/header.php';
                     <label for="username" class="form-label text-secondary small fw-bold">USERNAME</label>
                     <input type="text" name="username" id="username" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="Pilih username">
                 </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label text-secondary small fw-bold">EMAIL</label>
+                    <input type="email" name="email" id="email" class="form-control form-control-lg bg-light border-0" style="font-size: 0.9rem;" required placeholder="contoh@email.com">
+                </div>
                 <div class="mb-4">
                     <label for="password" class="form-label text-secondary small fw-bold">PASSWORD</label>
                     <div class="input-group">
