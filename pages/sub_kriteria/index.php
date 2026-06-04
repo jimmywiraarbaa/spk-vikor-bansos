@@ -5,9 +5,9 @@ checkLogin();
 include_once '../../templates/header.php';
 
 $stmt = $pdo->query("
-    SELECT sk.*, k.kode as kriteria_kode, k.nama as kriteria_nama 
-    FROM sub_kriteria sk 
-    JOIN kriteria k ON sk.kriteria_id = k.id 
+    SELECT sk.*, k.kode as kriteria_kode, k.nama as kriteria_nama
+    FROM sub_kriteria sk
+    JOIN kriteria k ON sk.kriteria_id = k.id
     ORDER BY k.kode ASC, sk.kode ASC
 ");
 $subKriteria = $stmt->fetchAll();

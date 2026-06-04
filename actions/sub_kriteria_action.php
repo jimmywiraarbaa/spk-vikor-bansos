@@ -3,6 +3,8 @@ session_start();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
+$indexPage = 'pages/sub_kriteria/index.php';
+
 if (isset($_POST['tambah'])) {
     $kriteriaId = $_POST['kriteria_id'];
     $kode = $_POST['kode'];
@@ -14,7 +16,7 @@ if (isset($_POST['tambah'])) {
         $stmt->execute([$kriteriaId, $kode, $nama, $bobot]);
 
         $_SESSION['success'] = "Sub-kriteria berhasil ditambahkan.";
-        redirect('pages/sub_kriteria/index.php');
+        redirect($indexPage);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menambah data: " . $e->getMessage();
         redirect('pages/sub_kriteria/tambah.php');
@@ -33,7 +35,7 @@ if (isset($_POST['edit'])) {
         $stmt->execute([$kriteriaId, $kode, $nama, $bobot, $id]);
 
         $_SESSION['success'] = "Sub-kriteria berhasil diperbarui.";
-        redirect('pages/sub_kriteria/index.php');
+        redirect($indexPage);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal memperbarui data: " . $e->getMessage();
         redirect('pages/sub_kriteria/edit.php?id=' . $id);
@@ -51,5 +53,5 @@ if (isset($_GET['delete'])) {
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menghapus data: " . $e->getMessage();
     }
-    redirect('pages/sub_kriteria/index.php');
+    redirect($indexPage);
 }

@@ -3,6 +3,8 @@ session_start();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
+$indexPage = 'pages/alternatif/index.php';
+
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama'];
     $nik = $_POST['nik'];
@@ -17,7 +19,7 @@ if (isset($_POST['tambah'])) {
         $stmt->execute([$nama, $nik, $alamat, $rtRw, $kelurahan, $kecamatan, $noHp]);
 
         $_SESSION['success'] = "Alternatif berhasil ditambahkan.";
-        redirect('pages/alternatif/index.php');
+        redirect($indexPage);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menambah data: " . $e->getMessage();
         redirect('pages/alternatif/tambah.php');
@@ -39,7 +41,7 @@ if (isset($_POST['edit'])) {
         $stmt->execute([$nama, $nik, $alamat, $rtRw, $kelurahan, $kecamatan, $noHp, $id]);
 
         $_SESSION['success'] = "Alternatif berhasil diperbarui.";
-        redirect('pages/alternatif/index.php');
+        redirect($indexPage);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal memperbarui data: " . $e->getMessage();
         redirect('pages/alternatif/edit.php?id=' . $id);
@@ -57,5 +59,6 @@ if (isset($_GET['delete'])) {
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menghapus data: " . $e->getMessage();
     }
-    redirect('pages/alternatif/index.php');
+    redirect($indexPage);
 }
+

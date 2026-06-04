@@ -3,6 +3,9 @@ session_start();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
+$loginPage = 'pages/auth/login.php';
+$forgotPage = 'pages/auth/forgot_password.php';
+
 if (isset($_POST['register'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
@@ -14,7 +17,7 @@ if (isset($_POST['register'])) {
         $stmt->execute([$username, $email, $password, $nama_lengkap]);
 
         $_SESSION['success'] = "Registrasi berhasil, silakan login.";
-        redirect('pages/auth/login.php');
+        redirect($loginPage);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Registrasi gagal: " . $e->getMessage();
         redirect('pages/auth/register.php');
@@ -37,7 +40,7 @@ if (isset($_POST['login'])) {
         redirect('pages/dashboard.php');
     } else {
         $_SESSION['error'] = "Username atau password salah.";
-        redirect('pages/auth/login.php');
+        redirect($loginPage);
     }
 }
 
@@ -50,7 +53,7 @@ if (isset($_POST['forgot_password'])) {
 
     if (!$user) {
         $_SESSION['error'] = "Email tidak ditemukan dalam sistem.";
-        redirect('pages/auth/forgot_password.php');
+        redirect($forgotPage);
     }
 
     $token = bin2hex(random_bytes(32));
@@ -62,7 +65,7 @@ if (isset($_POST['forgot_password'])) {
 
     require_once __DIR__ . '/../includes/mail_helper.php';
 
-    $resetLink = baseUrl('pages/auth/forgot_password.php') . '?token=' . $token . '&email=' . urlencode($email);
+    $resetLink = baseUrl($forgotPage) . '?token=' . $token . '&email=' . urlencode($email);
     $htmlBody = '
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%); padding: 20px; border-radius: 10px 10px 0 0; text-align: center;">
@@ -87,7 +90,7 @@ if (isset($_POST['forgot_password'])) {
     } else {
         $_SESSION['error'] = "Gagal mengirim email. Silakan coba lagi nanti.";
     }
-    redirect('pages/auth/forgot_password.php');
+    redirect($forgotPage);
 }
 
 if (isset($_POST['reset_password'])) {
@@ -98,7 +101,7 @@ if (isset($_POST['reset_password'])) {
 
     if ($newPassword !== $confirmPassword) {
         $_SESSION['error'] = "Konfirmasi password tidak cocok.";
-        redirect('pages/auth/forgot_password.php?token=' . urlencode($token) . '&email=' . urlencode($email));
+        redirect($forgotPage . '?token=' . urlencode($token) . '&email=' . urlencode($email));
     }
 
     $stmt = $pdo->prepare("SELECT * FROM password_resets WHERE token = ? AND email = ? AND expires_at > NOW()");
@@ -107,7 +110,7 @@ if (isset($_POST['reset_password'])) {
 
     if (!$reset) {
         $_SESSION['error'] = "Token tidak valid atau sudah kedaluwarsa. Silakan ajukan reset ulang.";
-        redirect('pages/auth/forgot_password.php');
+        redirect($forgotPage);
     }
 
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -115,11 +118,12 @@ if (isset($_POST['reset_password'])) {
     $pdo->prepare("DELETE FROM password_resets WHERE email = ?")->execute([$email]);
 
     $_SESSION['success'] = "Password berhasil diubah. Silakan login dengan password baru Anda.";
-    redirect('pages/auth/login.php');
+    redirect($loginPage);
 }
 
 if (isset($_GET['logout'])) {
     session_destroy();
-    redirect('pages/auth/login.php');
+    redirect($loginPage);
 }
+
 

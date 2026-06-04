@@ -1,17 +1,16 @@
 <?php
 require_once '../../includes/auth_helper.php';
 require_once '../../includes/db.php';
+require_once '../../includes/functions.php';
 checkLogin();
 
 if ($_SESSION['role'] !== 'admin') {
     $_SESSION['error'] = "Akses ditolak.";
-    header("Location: " . baseUrl('pages/dashboard.php'));
-    exit;
+    redirect('pages/dashboard.php');
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: " . baseUrl('pages/users/index.php'));
-    exit;
+    redirect('pages/users/index.php');
 }
 
 $id = $_GET['id'];
@@ -21,8 +20,7 @@ $user = $stmt->fetch();
 
 if (!$user) {
     $_SESSION['error'] = "User tidak ditemukan.";
-    header("Location: " . baseUrl('pages/users/index.php'));
-    exit;
+    redirect('pages/users/index.php');
 }
 
 include_once '../../templates/header.php';

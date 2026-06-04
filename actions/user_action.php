@@ -3,6 +3,9 @@ session_start();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
+$userIndex = 'pages/users/index.php';
+$tambahPage = 'pages/users/tambah.php';
+
 if (isset($_POST['tambah'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
@@ -12,17 +15,17 @@ if (isset($_POST['tambah'])) {
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $_SESSION['error'] = "Semua field wajib diisi.";
-        redirect('pages/users/tambah.php');
+        redirect($tambahPage);
     }
 
     if ($password !== $confirm_password) {
         $_SESSION['error'] = "Password dan konfirmasi password tidak cocok.";
-        redirect('pages/users/tambah.php');
+        redirect($tambahPage);
     }
 
     if (!in_array($role, ['admin', 'operator'])) {
         $_SESSION['error'] = "Role tidak valid.";
-        redirect('pages/users/tambah.php');
+        redirect($tambahPage);
     }
 
     try {
@@ -30,7 +33,7 @@ if (isset($_POST['tambah'])) {
         $check->execute([$username, $email]);
         if ($check->fetch()) {
             $_SESSION['error'] = "Username atau email sudah digunakan.";
-            redirect('pages/users/tambah.php');
+            redirect($tambahPage);
         }
 
         $hashed = password_hash($password, PASSWORD_DEFAULT);
@@ -38,10 +41,10 @@ if (isset($_POST['tambah'])) {
         $stmt->execute([$username, $email, $hashed, $role]);
 
         $_SESSION['success'] = "User berhasil ditambahkan.";
-        redirect('pages/users/index.php');
+        redirect($userIndex);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menambah user: " . $e->getMessage();
-        redirect('pages/users/tambah.php');
+        redirect($tambahPage);
     }
 }
 
@@ -51,15 +54,16 @@ if (isset($_POST['edit'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $role = $_POST['role'];
+    $editPage = 'pages/users/edit.php?id=' . $id;
 
     if (empty($username) || empty($email)) {
         $_SESSION['error'] = "Username dan email wajib diisi.";
-        redirect('pages/users/edit.php?id=' . $id);
+        redirect($editPage);
     }
 
     if (!in_array($role, ['admin', 'operator'])) {
         $_SESSION['error'] = "Role tidak valid.";
-        redirect('pages/users/edit.php?id=' . $id);
+        redirect($editPage);
     }
 
     try {
@@ -67,7 +71,7 @@ if (isset($_POST['edit'])) {
         $check->execute([$username, $email, $id]);
         if ($check->fetch()) {
             $_SESSION['error'] = "Username atau email sudah digunakan oleh user lain.";
-            redirect('pages/users/edit.php?id=' . $id);
+            redirect($editPage);
         }
 
         if (!empty($password)) {
@@ -80,10 +84,10 @@ if (isset($_POST['edit'])) {
         }
 
         $_SESSION['success'] = "User berhasil diperbarui.";
-        redirect('pages/users/index.php');
+        redirect($userIndex);
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal memperbarui user: " . $e->getMessage();
-        redirect('pages/users/edit.php?id=' . $id);
+        redirect($editPage);
     }
 }
 
@@ -94,7 +98,7 @@ if (isset($_GET['delete'])) {
 
     if ($id == $selfId) {
         $_SESSION['error'] = "Tidak dapat menghapus akun sendiri.";
-        redirect('pages/users/index.php');
+        redirect($userIndex);
     }
 
     try {
@@ -105,5 +109,5 @@ if (isset($_GET['delete'])) {
     } catch (PDOException $e) {
         $_SESSION['error'] = "Gagal menghapus user: " . $e->getMessage();
     }
-    redirect('pages/users/index.php');
+    redirect($userIndex);
 }
