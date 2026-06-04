@@ -20,7 +20,7 @@ function sendEmail($toEmail, $toName, $subject, $htmlBody)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        $mail->setFrom('ad8270001@smtp-brevo.com', 'SPK VIKOR BANSOS');
+        $mail->setFrom('afidh12@gmail.com', 'SPK VIKOR BANSOS');
         $mail->addAddress($toEmail, $toName);
 
         $mail->isHTML(true);

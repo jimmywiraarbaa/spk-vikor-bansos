@@ -24,10 +24,12 @@
                 <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria/') !== false) ? 'active' : ''; ?>">
                     <a href="<?php echo baseUrl('pages/kriteria/index.php'); ?>">Data Kriteria</a>
                 </li>
-                <li>
-                    <a href="#">Data Alternatif</a>
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'alternatif/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo baseUrl('pages/alternatif/index.php'); ?>">Data Alternatif</a>
                 </li>
-                <li><a href="#">Data Sub-Kriteria</a></li>
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'sub_kriteria/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo baseUrl('pages/sub_kriteria/index.php'); ?>">Data Sub-Kriteria</a>
+                </li>
             </ul>
         </li>
 
