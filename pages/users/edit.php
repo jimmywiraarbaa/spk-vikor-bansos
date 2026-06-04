@@ -1,10 +1,27 @@
 <?php
 require_once '../../includes/auth_helper.php';
+require_once '../../includes/db.php';
 checkLogin();
 
 if ($_SESSION['role'] !== 'admin') {
     $_SESSION['error'] = "Akses ditolak.";
     header("Location: " . baseUrl('pages/dashboard.php'));
+    exit;
+}
+
+if (!isset($_GET['id'])) {
+    header("Location: " . baseUrl('pages/users/index.php'));
+    exit;
+}
+
+$id = $_GET['id'];
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$id]);
+$user = $stmt->fetch();
+
+if (!$user) {
+    $_SESSION['error'] = "User tidak ditemukan.";
+    header("Location: " . baseUrl('pages/users/index.php'));
     exit;
 }
 
@@ -26,43 +43,48 @@ include_once '../../templates/header.php';
                 <div class="col-lg-8">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h4 class="fw-bold mb-0">Tambah User</h4>
-                            <p class="text-muted small">Tambahkan akun pengguna baru ke sistem.</p>
+                            <h4 class="fw-bold mb-0">Edit User</h4>
+                            <p class="text-muted small">Perbarui informasi akun pengguna.</p>
                         </div>
                         <a href="index.php" class="btn btn-light btn-sm border px-3 rounded-pill">
                             <i class="bi bi-arrow-left me-1"></i> Kembali
                         </a>
                     </div>
 
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show mb-4" role="alert">
+                            <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card border-0 shadow-sm p-4">
-                        <form action="../../actions/user_action.php" method="POST" id="formTambahUser">
+                        <form action="../../actions/user_action.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="username" class="form-label small fw-bold text-secondary">USERNAME</label>
-                                    <input type="text" name="username" id="username" class="form-control bg-light border-0" placeholder="Masukkan username" required>
+                                    <input type="text" name="username" id="username" class="form-control bg-light border-0" value="<?php echo htmlspecialchars($user['username']); ?>" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label small fw-bold text-secondary">EMAIL</label>
-                                    <input type="email" name="email" id="email" class="form-control bg-light border-0" placeholder="Masukkan email" required>
+                                    <input type="email" name="email" id="email" class="form-control bg-light border-0" value="<?php echo htmlspecialchars($user['email']); ?>" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="password" class="form-label small fw-bold text-secondary">PASSWORD</label>
-                                    <input type="password" name="password" id="password" class="form-control bg-light border-0" placeholder="Masukkan password" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="confirm_password" class="form-label small fw-bold text-secondary">KONFIRMASI PASSWORD</label>
-                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control bg-light border-0" placeholder="Ulangi password" required>
+                                    <label for="password" class="form-label small fw-bold text-secondary">PASSWORD BARU</label>
+                                    <input type="password" name="password" id="password" class="form-control bg-light border-0" placeholder="Kosongkan jika tidak ingin mengubah">
+                                    <div class="form-text small">Kosongkan untuk mempertahankan password lama.</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="role" class="form-label small fw-bold text-secondary">ROLE</label>
                                     <select name="role" id="role" class="form-select bg-light border-0" required>
-                                        <option value="operator">Operator</option>
-                                        <option value="admin">Admin</option>
+                                        <option value="admin" <?php echo $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
+                                        <option value="operator" <?php echo $user['role'] === 'operator' ? 'selected' : ''; ?>>Operator</option>
                                     </select>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <button type="submit" name="tambah" class="btn btn-danger px-5 py-2 rounded-pill shadow-sm">
-                                        Simpan User
+                                    <button type="submit" name="edit" class="btn btn-danger px-5 py-2 rounded-pill shadow-sm">
+                                        Perbarui User
                                     </button>
                                 </div>
                             </div>
@@ -73,16 +95,5 @@ include_once '../../templates/header.php';
         </div>
     </div>
 </div>
-
-<script>
-document.getElementById('formTambahUser').addEventListener('submit', function(e) {
-    var password = document.getElementById('password').value;
-    var confirm = document.getElementById('confirm_password').value;
-    if (password !== confirm) {
-        e.preventDefault();
-        alert('Password dan konfirmasi password tidak cocok.');
-    }
-});
-</script>
 
 <?php include_once '../../templates/footer.php'; ?>
