@@ -39,11 +39,20 @@
                 <span><i class="bi bi-calculator"></i> Proses VIKOR</span>
                 <i class="bi bi-chevron-down arrow-icon"></i>
             </a>
-            <ul class="collapse list-unstyled" id="prosesMenu">
-                <li><a href="#">Input Penilaian</a></li>
-                <li><a href="#">Hasil Perhitungan</a></li>
+            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'penilaian') !== false || strpos($_SERVER['PHP_SELF'], 'perhitungan') !== false) ? 'show' : ''; ?>" id="prosesMenu">
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'penilaian/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo baseUrl('pages/penilaian/index.php'); ?>">Input Penilaian</a>
+                </li>
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'perhitungan/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo baseUrl('pages/perhitungan/index.php'); ?>">Hasil Perhitungan</a>
+                </li>
                 <li><a href="#">Ranking</a></li>
             </ul>
+        </li>
+        <li>
+            <a href="<?php echo baseUrl('pages/skala_penilaian/index.php'); ?>" class="<?php echo (strpos($_SERVER['PHP_SELF'], 'skala_penilaian') !== false) ? 'text-danger fw-bold' : ''; ?>">
+                <i class="bi bi-rulers"></i> Skala Penilaian
+            </a>
         </li>
         <li>
             <a href="#">
