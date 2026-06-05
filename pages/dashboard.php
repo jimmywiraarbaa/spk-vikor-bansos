@@ -1,12 +1,12 @@
 <?php
 require_once '../includes/auth_helper.php';
 checkLogin();
-include '../templates/header.php';
+include_once '../templates/header.php';
 ?>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include '../templates/sidebar.php'; ?>
+    <?php include_once '../templates/sidebar.php'; ?>
 
     <!-- Page Content -->
     <div id="content">
@@ -31,7 +31,7 @@ include '../templates/header.php';
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo base_url('actions/auth_action.php?logout=1'); ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo baseUrl('actions/auth_action.php?logout=1'); ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -123,7 +123,7 @@ include '../templates/header.php';
                 </div>
                 <div class="col-lg-4">
                     <div class="card h-100 p-4 text-center">
-                        <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" class="mx-auto mb-3" style="max-height: 100px;">
+                        <img src="<?php echo baseUrl('public/img/logo-remove-bg.png'); ?>" alt="Logo Dinas Sosial Kabupaten Merangin" class="mx-auto mb-3" style="max-height: 100px;">
                         <h6 class="fw-bold">Dinas Sosial</h6>
                         <p class="small text-muted">Kabupaten Merangin, Jambi</p>
                     </div>
@@ -133,4 +133,4 @@ include '../templates/header.php';
     </div>
 </div>
 
-<?php include '../templates/footer.php'; ?>
+<?php include_once '../templates/footer.php'; ?>

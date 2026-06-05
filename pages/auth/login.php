@@ -1,7 +1,7 @@
 <?php
 require_once '../../includes/auth_helper.php';
 isGuest();
-include '../../templates/header.php';
+include_once '../../templates/header.php';
 ?>
 
 <div class="container-fluid vh-100">
@@ -16,7 +16,7 @@ include '../../templates/header.php';
                 <span class="small opacity-75">(VlseKriterijumska Optimizacija I Kompromisno Resenje)</span>
             </h2>
             <hr class="w-25 border-white opacity-50 mb-4">
-            <img src="<?php echo base_url('public/img/logo-remove-bg.png'); ?>" alt="Logo Instansi" class="mb-4"
+            <img src="<?php echo baseUrl('public/img/logo-remove-bg.png'); ?>" alt="Logo Instansi" class="mb-4"
                 style="max-height: 120px; width: auto;">
             <h3 class="h5 fw-normal">
                 PADA DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN, <br>
@@ -55,12 +55,12 @@ include '../../templates/header.php';
                     <form action="../../actions/auth_action.php" method="POST" id="loginForm">
                         <input type="hidden" name="login" value="1">
                         <div class="mb-3">
-                            <label class="form-label text-secondary small fw-bold">USERNAME</label>
-                            <input type="text" name="username" class="form-control form-control-lg bg-light border-0"
+                            <label for="username" class="form-label text-secondary small fw-bold">USERNAME</label>
+                            <input type="text" name="username" id="username" class="form-control form-control-lg bg-light border-0"
                                 style="font-size: 0.95rem;" required placeholder="Masukkan username">
                         </div>
                         <div class="mb-4">
-                            <label class="form-label text-secondary small fw-bold">PASSWORD</label>
+                            <label for="password" class="form-label text-secondary small fw-bold">PASSWORD</label>
                             <div class="input-group">
                                 <input type="password" name="password" id="password"
                                     class="form-control form-control-lg bg-light border-0" style="font-size: 0.95rem;"
@@ -72,15 +72,11 @@ include '../../templates/header.php';
                         </div>
                         <button type="submit" name="login" id="loginBtn"
                             class="btn btn-primary btn-lg w-100 mb-3 shadow-sm" style="border-radius: 10px;">
-                            <span class="spinner-border spinner-border-sm d-none" id="loginSpinner" role="status"
-                                aria-hidden="true"></span>
+                            <span class="spinner-border spinner-border-sm d-none" id="loginSpinner" aria-hidden="true"></span>
                             <span id="loginText">Login Sekarang</span>
                         </button>
                     </form>
 
-                    <!-- <div class="text-center">
-                        <span class="small text-muted">Belum punya akun? <a href="register.php" class="text-decoration-none fw-bold">Daftar Akun</a></span>
-                    </div> -->
                     <div class="text-center">
                         <span class="small text-muted"><a href="forgot_password.php"
                                 class="text-decoration-none fw-bold">Lupa Password?</a></span>
@@ -91,4 +87,4 @@ include '../../templates/header.php';
     </div>
 </div>
 
-<?php include '../../templates/footer.php'; ?>
+<?php include_once '../../templates/footer.php'; ?>

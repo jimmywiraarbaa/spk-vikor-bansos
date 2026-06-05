@@ -1,9 +1,9 @@
 <?php
 // includes/db.php
-$host = 'localhost';
+$host = '127.0.0.1';
 $db   = 'spk_vikor_bansos';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

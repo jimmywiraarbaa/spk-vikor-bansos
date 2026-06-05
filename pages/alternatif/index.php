@@ -4,19 +4,15 @@ require_once '../../includes/db.php';
 checkLogin();
 include_once '../../templates/header.php';
 
-// Ambil data kriteria
-$stmt = $pdo->query("SELECT * FROM kriteria ORDER BY kode ASC");
-$kriteria = $stmt->fetchAll();
+$stmt = $pdo->query("SELECT * FROM alternatif ORDER BY nama ASC");
+$alternatif = $stmt->fetchAll();
 ?>
 
 <div id="wrapper">
-    <!-- Sidebar -->
     <?php include_once '../../templates/sidebar.php'; ?>
 
-    <!-- Page Content -->
     <div id="content">
-        <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-lg top-navbar" aria-label="Navigasi Kriteria">
+        <nav class="navbar navbar-expand-lg top-navbar" aria-label="Navigasi Alternatif">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse" class="btn btn-light border-0">
                     <i class="bi bi-list"></i>
@@ -38,20 +34,19 @@ $kriteria = $stmt->fetchAll();
             </div>
         </nav>
 
-        <!-- Main Content -->
         <div class="main-content animate-up">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h4 class="fw-bold mb-0">Data Kriteria</h4>
+                    <h4 class="fw-bold mb-0">Data Alternatif</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="../dashboard.php" class="text-decoration-none">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Kriteria</li>
+                            <li class="breadcrumb-item active" aria-current="page">Alternatif</li>
                         </ol>
                     </nav>
                 </div>
                 <a href="tambah.php" class="btn btn-danger btn-sm px-3 py-2 rounded-pill shadow-sm">
-                    <i class="bi bi-plus-lg me-1"></i> Tambah Kriteria
+                    <i class="bi bi-plus-lg me-1"></i> Tambah Alternatif
                 </a>
             </div>
 
@@ -68,41 +63,47 @@ $kriteria = $stmt->fetchAll();
                         <table class="table table-hover align-middle mb-0">
                             <thead class="bg-light text-secondary">
                                 <tr>
-                                    <th class="ps-4 py-3" style="width: 80px;">KODE</th>
-                                    <th class="py-3">NAMA KRITERIA</th>
-                                    <th class="py-3">SIFAT</th>
-                                    <th class="py-3">BOBOT (Wi)</th>
-                                    <th class="py-3">PENJELASAN</th>
+                                    <th class="ps-4 py-3" style="width: 50px;">NO</th>
+                                    <th class="py-3">NAMA</th>
+                                    <th class="py-3">NIK</th>
+                                    <th class="py-3">ALAMAT</th>
+                                    <th class="py-3">RT/RW</th>
+                                    <th class="py-3">KELURAHAN</th>
+                                    <th class="py-3">KECAMATAN</th>
+                                    <th class="py-3">NO HP</th>
                                     <th class="pe-4 py-3 text-end" style="width: 150px;">AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($kriteria as $row): ?>
+                                <?php if (empty($alternatif)): ?>
                                 <tr>
-                                    <td class="ps-4 fw-bold text-danger"><?php echo $row['kode']; ?></td>
+                                    <td colspan="9" class="text-center text-muted py-5">
+                                        <i class="bi bi-people fs-1 d-block mb-2"></i>
+                                        Belum ada data alternatif
+                                    </td>
+                                </tr>
+                                <?php else: ?>
+                                <?php $no = 1; foreach ($alternatif as $row): ?>
+                                <tr>
+                                    <td class="ps-4 fw-bold text-muted"><?php echo $no++; ?></td>
                                     <td class="fw-medium"><?php echo $row['nama']; ?></td>
-                                    <td>
-                                        <?php if ($row['sifat'] == 'cost'): ?>
-                                            <span class="badge bg-warning bg-opacity-10 text-warning border-0 px-3 py-2">Cost</span>
-                                        <?php else: ?>
-                                            <span class="badge bg-success bg-opacity-10 text-success border-0 px-3 py-2">Benefit</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td class="fw-bold text-dark">
-                                        <?php echo number_format($row['bobot'], 2); ?>
-                                        <small class="text-muted">(<?php echo $row['bobot'] * 100; ?>%)</small>
-                                    </td>
-                                    <td class="text-muted small"><?php echo $row['penjelasan']; ?></td>
+                                    <td><code><?php echo $row['nik']; ?></code></td>
+                                    <td class="text-muted small"><?php echo $row['alamat']; ?></td>
+                                    <td><?php echo $row['rt_rw']; ?></td>
+                                    <td><?php echo $row['kelurahan']; ?></td>
+                                    <td><?php echo $row['kecamatan']; ?></td>
+                                    <td><?php echo $row['no_hp'] ?: '-'; ?></td>
                                     <td class="pe-4 text-end">
                                         <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-light btn-sm rounded-circle p-2 me-1 border shadow-sm">
                                             <i class="bi bi-pencil text-primary"></i>
                                         </a>
-                                        <a href="../../actions/kriteria_action.php?delete=<?php echo $row['id']; ?>" class="btn btn-light btn-sm rounded-circle p-2 border shadow-sm" onclick="return confirm('Yakin ingin menghapus kriteria ini?')">
+                                        <a href="../../actions/alternatif_action.php?delete=<?php echo $row['id']; ?>" class="btn btn-light btn-sm rounded-circle p-2 border shadow-sm" onclick="return confirm('Yakin ingin menghapus alternatif ini? Semua penilaian terkait juga akan terhapus.')">
                                             <i class="bi bi-trash text-danger"></i>
                                         </a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
