@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS skala_penilaian (
     nilai INT NOT NULL,
     keterangan VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (sub_kriteria_id) REFERENCES sub_kriteria(id) ON DELETE CASCADE,
     UNIQUE KEY (sub_kriteria_id, nilai)
 );

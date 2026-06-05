@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS kriteria (
     sifat ENUM('cost', 'benefit') NOT NULL,
     bobot DECIMAL(5, 2) NOT NULL,
     penjelasan TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 -- Data Awal Kriteria
 INSERT IGNORE INTO kriteria (kode, nama, sifat, bobot, penjelasan)
