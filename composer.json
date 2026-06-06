@@ -1,13 +1,8 @@
 {
-    "name": "spk/vikor-bansos",
-    "type": "project",
-    "authors": [
-        {
-            "name": "afidhadra",
-            "email": "afidh12@gmail.com"
-        }
-    ],
-    "require": {
-        "phpmailer/phpmailer": "^7.1"
-    }
+  "name": "spk/vikor-bansos",
+  "type": "project",
+  "require": {
+    "phpmailer/phpmailer": "^7.1",
+    "vlucas/phpdotenv": "^5.6"
+  }
 }

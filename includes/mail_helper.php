@@ -1,36 +1,55 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 function sendEmail($toEmail, $toName, $subject, $htmlBody)
 {
-    $mail = new PHPMailer(true);
+    $apiKey = $_ENV['BREVO_API_KEY'] ?? '';
+    $fromName = $_ENV['MAIL_FROM_NAME'] ?? 'SPK VIKOR BANSOS';
+    $fromEmail = $_ENV['MAIL_FROM_EMAIL'] ?? '';
 
-    try {
-        $mail->SMTPDebug = SMTP::DEBUG_OFF;
-        $mail->isSMTP();
-        $mail->Host       = 'smtp-relay.brevo.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'ad8270001@smtp-brevo.com';
-        $mail->Password   = 'v94hx2ErJFmgTKBc';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+    $data = [
+        'sender' => [
+            'name' => $fromName,
+            'email' => $fromEmail,
+        ],
+        'to' => [
+            [
+                'email' => $toEmail,
+                'name' => $toName,
+            ],
+        ],
+        'subject' => $subject,
+        'htmlContent' => $htmlBody,
+    ];
 
-        $mail->setFrom('afidh12@gmail.com', 'SPK VIKOR BANSOS');
-        $mail->addAddress($toEmail, $toName);
+    $ch = curl_init('https://api.brevo.com/v3/smtp/email');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => json_encode($data),
+        CURLOPT_HTTPHEADER => [
+            'Accept: application/json',
+            'Content-Type: application/json',
+            'api-key: ' . $apiKey,
+        ],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+    ]);
 
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body    = $htmlBody;
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    curl_close($ch);
 
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        error_log('Mail Error: ' . $mail->ErrorInfo);
+    if ($error) {
+        error_log('Mail cURL Error: ' . $error);
         return false;
     }
+
+    if ($httpCode >= 400) {
+        error_log('Mail API Error: ' . $response);
+        return false;
+    }
+
+    return true;
 }

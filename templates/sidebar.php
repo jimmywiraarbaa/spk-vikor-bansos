@@ -24,11 +24,12 @@
                 <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria/') !== false) ? 'active' : ''; ?>">
                     <a href="<?php echo baseUrl('pages/kriteria/index.php'); ?>">Data Kriteria</a>
                 </li>
-                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'alternatif/') !== false) ? 'active' : ''; ?>">
-                    <a href="<?php echo baseUrl('pages/alternatif/index.php'); ?>">Data Alternatif</a>
-                </li>
+
                 <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'sub_kriteria/') !== false) ? 'active' : ''; ?>">
                     <a href="<?php echo baseUrl('pages/sub_kriteria/index.php'); ?>">Data Sub-Kriteria</a>
+                </li>
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'alternatif/') !== false) ? 'active' : ''; ?>">
+                    <a href="<?php echo baseUrl('pages/alternatif/index.php'); ?>">Data Alternatif</a>
                 </li>
             </ul>
         </li>
@@ -64,11 +65,11 @@
 
         <div class="menu-label">Sistem</div>
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'users/') !== false) ? 'active' : ''; ?>">
-            <a href="<?php echo baseUrl('pages/users/index.php'); ?>">
-                <i class="bi bi-people"></i> Manajemen User
-            </a>
-        </li>
+            <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'users/') !== false) ? 'active' : ''; ?>">
+                <a href="<?php echo baseUrl('pages/users/index.php'); ?>">
+                    <i class="bi bi-people"></i> Manajemen User
+                </a>
+            </li>
         <?php endif; ?>
         <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'profil/') !== false) ? 'active' : ''; ?>">
             <a href="<?php echo baseUrl('pages/profil/index.php'); ?>">
