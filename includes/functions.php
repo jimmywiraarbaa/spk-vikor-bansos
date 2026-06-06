@@ -19,6 +19,10 @@ function baseUrl($path = '') {
         }
     }
 
+    if ($base_dir === $script) {
+        $base_dir = dirname($script);
+    }
+
     $base_dir = rtrim($base_dir, '/');
     return $protocol . "://" . $host . $base_dir . '/' . ltrim($path, '/');
 }
