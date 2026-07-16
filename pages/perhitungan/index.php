@@ -85,7 +85,7 @@ if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
             if ($fStarVal == $fWorstVal) {
                 $normalized = 0;
             } else {
-                $normalized = ($fWorstVal - $fij) / ($fWorstVal - $fStarVal);
+                $normalized = ($fStarVal - $fij) / ($fStarVal - $fWorstVal);
             }
 
             $weighted = $w * $normalized;

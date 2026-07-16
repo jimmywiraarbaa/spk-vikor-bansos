@@ -1,7 +1,13 @@
 <?php
 require_once '../includes/auth_helper.php';
 checkLogin();
+require_once '../includes/db.php';
 include_once '../templates/header.php';
+
+$totalKriteria = $pdo->query("SELECT COUNT(*) FROM kriteria")->fetchColumn();
+$totalAlternatif = $pdo->query("SELECT COUNT(*) FROM alternatif")->fetchColumn();
+$totalPerhitungan = $pdo->query("SELECT COUNT(*) FROM hasil_perhitungan")->fetchColumn();
+$totalUser = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 ?>
 
 <div id="wrapper">
@@ -55,7 +61,7 @@ include_once '../templates/header.php';
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="text-muted mb-2 small fw-bold">TOTAL KRITERIA</h6>
-                                    <h3 class="fw-bold mb-0">5</h3>
+                                    <h3 class="fw-bold mb-0"><?php echo $totalKriteria; ?></h3>
                                 </div>
                                 <div class="bg-danger bg-opacity-10 p-3 rounded-3">
                                     <i class="bi bi-list-check text-danger fs-4"></i>
@@ -70,7 +76,7 @@ include_once '../templates/header.php';
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="text-muted mb-2 small fw-bold">ALTERNATIF</h6>
-                                    <h3 class="fw-bold mb-0">120</h3>
+                                    <h3 class="fw-bold mb-0"><?php echo $totalAlternatif; ?></h3>
                                 </div>
                                 <div class="bg-primary bg-opacity-10 p-3 rounded-3">
                                     <i class="bi bi-people text-primary fs-4"></i>
@@ -85,7 +91,7 @@ include_once '../templates/header.php';
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="text-muted mb-2 small fw-bold">PERHITUNGAN</h6>
-                                    <h3 class="fw-bold mb-0">8</h3>
+                                    <h3 class="fw-bold mb-0"><?php echo $totalPerhitungan; ?></h3>
                                 </div>
                                 <div class="bg-success bg-opacity-10 p-3 rounded-3">
                                     <i class="bi bi-check-circle text-success fs-4"></i>
@@ -100,7 +106,7 @@ include_once '../templates/header.php';
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="text-muted mb-2 small fw-bold">USER AKTIF</h6>
-                                    <h3 class="fw-bold mb-0">3</h3>
+                                    <h3 class="fw-bold mb-0"><?php echo $totalUser; ?></h3>
                                 </div>
                                 <div class="bg-warning bg-opacity-10 p-3 rounded-3">
                                     <i class="bi bi-person-check text-warning fs-4"></i>
