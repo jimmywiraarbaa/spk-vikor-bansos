@@ -176,6 +176,7 @@
         /* Content Styles */
         #content {
             width: 100%;
+            min-width: 0;
             padding: 0;
             min-height: 100vh;
             transition: all 0.3s;

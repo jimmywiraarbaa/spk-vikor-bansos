@@ -61,6 +61,14 @@ foreach ($skala as $row) {
                 </div>
             </div>
 
+            <?php if (empty($grouped)): ?>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center py-5">
+                    <i class="bi bi-rulers fs-1 text-muted d-block mb-2"></i>
+                    <p class="text-muted mb-0">Belum ada data skala penilaian.</p>
+                </div>
+            </div>
+            <?php else: ?>
             <?php foreach ($grouped as $group): ?>
             <div class="card border-0 shadow-sm mb-3">
                 <div class="card-header bg-light border-0 py-3 px-4">
@@ -98,6 +106,7 @@ foreach ($skala as $row) {
                 </div>
             </div>
             <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
