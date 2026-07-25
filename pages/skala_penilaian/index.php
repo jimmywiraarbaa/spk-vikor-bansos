@@ -40,9 +40,9 @@ foreach ($skala as $row) {
                 <div class="ms-auto d-flex align-items-center">
                     <div class="d-flex align-items-center">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
-                            <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
-                        </div>
-                        <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
+                            <?php echo strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?>
+                            </div>
+                            <span class="fw-medium small"><?php echo $_SESSION['nama_lengkap']; ?></span>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nama_lengkap = trim($_POST['nama_lengkap']);
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $passwordLama = $_POST['password_lama'];
@@ -29,15 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['error'] = "Password baru minimal 6 karakter.";
             } else {
                 $hash = password_hash($passwordBaru, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?");
-                $stmt->execute([$username, $email, $hash, $userId]);
+                $stmt = $pdo->prepare("UPDATE users SET nama_lengkap = ?, username = ?, email = ?, password = ? WHERE id = ?");
+                $stmt->execute([$nama_lengkap, $username, $email, $hash, $userId]);
                 $_SESSION['username'] = $username;
+                $_SESSION['nama_lengkap'] = $nama_lengkap;
                 $_SESSION['success'] = "Profil berhasil diperbarui.";
             }
         } else {
-            $stmt = $pdo->prepare("UPDATE users SET username = ?, email = ? WHERE id = ?");
-            $stmt->execute([$username, $email, $userId]);
+            $stmt = $pdo->prepare("UPDATE users SET nama_lengkap = ?, username = ?, email = ? WHERE id = ?");
+            $stmt->execute([$nama_lengkap, $username, $email, $userId]);
             $_SESSION['username'] = $username;
+            $_SESSION['nama_lengkap'] = $nama_lengkap;
             $_SESSION['success'] = "Profil berhasil diperbarui.";
         }
         header("Location: index.php");
@@ -62,7 +65,7 @@ include_once '../../templates/header.php';
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="ms-auto d-flex align-items-center">
-                    <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
+                    <span class="fw-medium small"><?php echo $_SESSION['nama_lengkap']; ?></span>
                 </div>
             </div>
         </nav>
@@ -99,9 +102,10 @@ include_once '../../templates/header.php';
                     <div class="card border-0 shadow-sm p-4 mb-4">
                         <div class="text-center mb-4">
                             <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
-                                <?php echo strtoupper(substr($user['username'], 0, 1)); ?>
+                                <?php echo strtoupper(substr($user['nama_lengkap'], 0, 1)); ?>
                             </div>
-                            <h5 class="fw-bold mb-0"><?php echo $user['username']; ?></h5>
+                            <h5 class="fw-bold mb-0"><?php echo $user['nama_lengkap']; ?></h5>
+                            <small class="text-muted">@<?php echo $user['username']; ?></small>
                             <span class="badge <?php echo $user['role'] === 'admin' ? 'bg-danger' : ($user['role'] === 'kepala_dinsos' ? 'bg-success' : 'bg-primary'); ?> rounded-pill px-3 py-1 mt-1">
                                 <?php echo $user['role'] === 'kepala_dinsos' ? 'Kepala Dinas Sosial' : ucfirst($user['role']); ?>
                             </span>
@@ -112,6 +116,10 @@ include_once '../../templates/header.php';
                         <h6 class="fw-bold mb-3"><i class="bi bi-pencil me-2 text-danger"></i>Edit Profil</h6>
                         <form method="POST">
                             <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="nama_lengkap" class="form-label small fw-bold text-secondary">NAMA LENGKAP</label>
+                                    <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control bg-light border-0" value="<?php echo $user['nama_lengkap']; ?>" required>
+                                </div>
                                 <div class="col-md-6">
                                     <label for="username" class="form-label small fw-bold text-secondary">USERNAME</label>
                                     <input type="text" name="username" id="username" class="form-control bg-light border-0" value="<?php echo $user['username']; ?>" required>
