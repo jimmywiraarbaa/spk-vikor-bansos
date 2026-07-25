@@ -14,6 +14,7 @@
             </a>
         </li>
 
+        <?php if ($_SESSION['role'] !== 'kepala_dinsos'): ?>
         <div class="menu-label">Data Master</div>
         <li>
             <a href="#dataKriteriaMenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex align-items-center justify-content-between">
@@ -57,6 +58,7 @@
                 <i class="bi bi-rulers"></i> Skala Penilaian
             </a>
         </li>
+        <?php endif; ?>
         <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'laporan/') !== false) ? 'active' : ''; ?>">
             <a href="<?php echo baseUrl('pages/laporan/index.php'); ?>">
                 <i class="bi bi-file-earmark-bar-graph"></i> Laporan

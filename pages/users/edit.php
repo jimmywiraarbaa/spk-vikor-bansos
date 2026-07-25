@@ -78,6 +78,7 @@ include_once '../../templates/header.php';
                                     <select name="role" id="role" class="form-select bg-light border-0" required>
                                         <option value="admin" <?php echo $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
                                         <option value="operator" <?php echo $user['role'] === 'operator' ? 'selected' : ''; ?>>Operator</option>
+                                        <option value="kepala_dinsos" <?php echo $user['role'] === 'kepala_dinsos' ? 'selected' : ''; ?>>Kepala Dinas Sosial</option>
                                     </select>
                                 </div>
                                 <div class="col-12 mt-4">

@@ -34,7 +34,32 @@
             transition: all 0.3s cubic-bezier(0.945, 0.020, 0.270, 0.665);
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.02);
             z-index: 1000;
-            min-height: 100vh;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        #sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 2px;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+        }
+
+        #sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #ddd transparent;
         }
 
         #sidebar.active {

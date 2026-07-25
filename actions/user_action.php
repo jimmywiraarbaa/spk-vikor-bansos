@@ -23,7 +23,7 @@ if (isset($_POST['tambah'])) {
         redirect($tambahPage);
     }
 
-    if (!in_array($role, ['admin', 'operator'])) {
+    if (!in_array($role, ['admin', 'operator', 'kepala_dinsos'])) {
         $_SESSION['error'] = "Role tidak valid.";
         redirect($tambahPage);
     }
@@ -61,7 +61,7 @@ if (isset($_POST['edit'])) {
         redirect($editPage);
     }
 
-    if (!in_array($role, ['admin', 'operator'])) {
+    if (!in_array($role, ['admin', 'operator', 'kepala_dinsos'])) {
         $_SESSION['error'] = "Role tidak valid.";
         redirect($editPage);
     }

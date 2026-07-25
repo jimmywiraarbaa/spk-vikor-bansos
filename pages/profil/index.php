@@ -102,8 +102,8 @@ include_once '../../templates/header.php';
                                 <?php echo strtoupper(substr($user['username'], 0, 1)); ?>
                             </div>
                             <h5 class="fw-bold mb-0"><?php echo $user['username']; ?></h5>
-                            <span class="badge <?php echo $user['role'] === 'admin' ? 'bg-danger' : 'bg-primary'; ?> rounded-pill px-3 py-1 mt-1">
-                                <?php echo ucfirst($user['role']); ?>
+                            <span class="badge <?php echo $user['role'] === 'admin' ? 'bg-danger' : ($user['role'] === 'kepala_dinsos' ? 'bg-success' : 'bg-primary'); ?> rounded-pill px-3 py-1 mt-1">
+                                <?php echo $user['role'] === 'kepala_dinsos' ? 'Kepala Dinas Sosial' : ucfirst($user['role']); ?>
                             </span>
                         </div>
                     </div>

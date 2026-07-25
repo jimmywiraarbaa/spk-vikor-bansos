@@ -77,10 +77,10 @@ include_once '../../templates/header.php';
                         </button>
                     </form>
 
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <span class="small text-muted"><a href="forgot_password.php"
                                 class="text-decoration-none fw-bold">Lupa Password?</a></span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

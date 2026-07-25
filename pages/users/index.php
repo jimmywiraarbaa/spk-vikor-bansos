@@ -84,6 +84,8 @@ include_once '../../templates/header.php';
                                     <td>
                                         <?php if ($row['role'] === 'admin'): ?>
                                             <span class="badge bg-danger bg-opacity-10 text-danger border-0 px-3 py-2">Admin</span>
+                                        <?php elseif ($row['role'] === 'kepala_dinsos'): ?>
+                                            <span class="badge bg-success bg-opacity-10 text-success border-0 px-3 py-2">Kepala Dinas Sosial</span>
                                         <?php else: ?>
                                             <span class="badge bg-primary bg-opacity-10 text-primary border-0 px-3 py-2">Operator</span>
                                         <?php endif; ?>

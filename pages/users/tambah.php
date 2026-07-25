@@ -58,6 +58,7 @@ include_once '../../templates/header.php';
                                     <select name="role" id="role" class="form-select bg-light border-0" required>
                                         <option value="operator">Operator</option>
                                         <option value="admin">Admin</option>
+                                        <option value="kepala_dinsos">Kepala Dinas Sosial</option>
                                     </select>
                                 </div>
                                 <div class="col-12 mt-4">
