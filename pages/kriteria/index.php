@@ -22,17 +22,11 @@ $kriteria = $stmt->fetchAll();
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="ms-auto d-flex align-items-center">
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" id="dropdownUser" data-bs-toggle="dropdown">
-                            <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
-                                <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
-                            </div>
-                            <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
-                            <i class="bi bi-chevron-down user-arrow-icon"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3">
-                            <li><a class="dropdown-item py-2 text-danger" href="<?php echo baseUrl('actions/auth_action.php?logout=1'); ?>"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-                        </ul>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
+                        </div>
+                        <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
                     </div>
                 </div>
             </div>

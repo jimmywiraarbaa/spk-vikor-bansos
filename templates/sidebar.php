@@ -21,8 +21,8 @@
                 <span><i class="bi bi-list-task"></i> Data Master</span>
                 <i class="bi bi-chevron-down arrow-icon"></i>
             </a>
-            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria') !== false || strpos($_SERVER['PHP_SELF'], 'alternatif') !== false) ? 'show' : ''; ?>" id="dataKriteriaMenu">
-                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'kriteria/') !== false) ? 'active' : ''; ?>">
+            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], '/kriteria/') !== false || strpos($_SERVER['PHP_SELF'], 'sub_kriteria/') !== false || strpos($_SERVER['PHP_SELF'], 'alternatif') !== false) ? 'show' : ''; ?>" id="dataKriteriaMenu">
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], '/kriteria/') !== false) ? 'active' : ''; ?>">
                     <a href="<?php echo baseUrl('pages/kriteria/index.php'); ?>">Data Kriteria</a>
                 </li>
 
@@ -41,8 +41,8 @@
                 <span><i class="bi bi-calculator"></i> Proses VIKOR</span>
                 <i class="bi bi-chevron-down arrow-icon"></i>
             </a>
-            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], 'penilaian') !== false || strpos($_SERVER['PHP_SELF'], 'perhitungan') !== false) ? 'show' : ''; ?>" id="prosesMenu">
-                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'penilaian/') !== false) ? 'active' : ''; ?>">
+            <ul class="collapse list-unstyled <?php echo (strpos($_SERVER['PHP_SELF'], '/penilaian/') !== false || strpos($_SERVER['PHP_SELF'], 'perhitungan') !== false || strpos($_SERVER['PHP_SELF'], 'ranking') !== false) ? 'show' : ''; ?>" id="prosesMenu">
+                <li class="<?php echo (strpos($_SERVER['PHP_SELF'], '/penilaian/') !== false) ? 'active' : ''; ?>">
                     <a href="<?php echo baseUrl('pages/penilaian/index.php'); ?>">Input Penilaian</a>
                 </li>
                 <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'perhitungan/') !== false) ? 'active' : ''; ?>">
