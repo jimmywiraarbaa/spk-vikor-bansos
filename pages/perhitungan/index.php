@@ -270,7 +270,6 @@ if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
                                 <tr>
                                     <th class="ps-3 py-2">Ranking</th>
                                     <th class="py-2">Alternatif</th>
-                                    <th class="text-center py-2">NIK</th>
                                     <th class="text-center py-2">S</th>
                                     <th class="text-center py-2">R</th>
                                     <th class="text-center py-2">Q</th>
@@ -287,7 +286,6 @@ if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
                                         <?php endif; ?>
                                     </td>
                                     <td class="fw-medium"><?php echo $item['nama']; ?></td>
-                                    <td class="text-center small text-muted"><?php echo $item['nik']; ?></td>
                                     <td class="text-center"><?php echo number_format($item['S'], 4); ?></td>
                                     <td class="text-center"><?php echo number_format($item['R'], 4); ?></td>
                                     <td class="text-center fw-bold"><?php echo number_format($item['Q'], 4); ?></td>

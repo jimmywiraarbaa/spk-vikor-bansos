@@ -110,9 +110,7 @@ $ranking = $stmt->fetchAll();
                                 <tr>
                                     <th class="ps-4 py-3" style="width: 60px;">RANKING</th>
                                     <th class="py-3">NAMA</th>
-                                    <th class="py-3">NIK</th>
                                     <th class="py-3">ALAMAT</th>
-                                    <th class="py-3">RT/RW</th>
                                     <th class="py-3 text-end">NILAI S</th>
                                     <th class="py-3 text-end">NILAI R</th>
                                     <th class="py-3 text-end">NILAI Q</th>
@@ -134,9 +132,7 @@ $ranking = $stmt->fetchAll();
                                         <i class="bi bi-trophy-fill text-warning ms-1" title="Peringkat Terbaik"></i>
                                         <?php endif; ?>
                                     </td>
-                                    <td><code><?php echo $row['nik']; ?></code></td>
                                     <td class="text-muted small"><?php echo $row['alamat']; ?></td>
-                                    <td><?php echo $row['rt_rw']; ?></td>
                                     <td class="text-end font-monospace"><?php echo number_format($row['nilai_s'], 4); ?></td>
                                     <td class="text-end font-monospace"><?php echo number_format($row['nilai_r'], 4); ?></td>
                                     <td class="pe-4 text-end font-monospace"><?php echo number_format($row['nilai_q'], 4); ?></td>

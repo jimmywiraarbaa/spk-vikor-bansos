@@ -184,9 +184,7 @@ $filterLabel = $selectedKelurahan !== '' ? 'Kelurahan: ' . htmlspecialchars($sel
             <tr>
                 <th style="width: 50px;">Ranking</th>
                 <th style="text-align: left;">Nama</th>
-                <th>NIK</th>
                 <th>Alamat</th>
-                <th>RT/RW</th>
                 <th>Kelurahan</th>
                 <th>Nilai S</th>
                 <th>Nilai R</th>
@@ -198,9 +196,7 @@ $filterLabel = $selectedKelurahan !== '' ? 'Kelurahan: ' . htmlspecialchars($sel
             <tr class="<?php echo $row['ranking'] == 1 ? 'rank-1' : ''; ?>">
                 <td class="text-center"><?php echo $row['ranking']; ?></td>
                 <td><?php echo htmlspecialchars($row['nama']); ?></td>
-                <td><?php echo $row['nik']; ?></td>
                 <td><?php echo htmlspecialchars($row['alamat']); ?></td>
-                <td><?php echo htmlspecialchars($row['rt_rw']); ?></td>
                 <td><?php echo htmlspecialchars($row['kelurahan']); ?></td>
                 <td class="text-right"><?php echo number_format($row['nilai_s'], 4); ?></td>
                 <td class="text-right"><?php echo number_format($row['nilai_r'], 4); ?></td>

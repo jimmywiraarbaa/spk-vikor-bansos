@@ -59,19 +59,16 @@ $alternatif = $stmt->fetchAll();
                                 <tr>
                                     <th class="ps-4 py-3" style="width: 50px;">NO</th>
                                     <th class="py-3">NAMA</th>
-                                    <th class="py-3">NIK</th>
                                     <th class="py-3">ALAMAT</th>
-                                    <th class="py-3">RT/RW</th>
                                     <th class="py-3">KELURAHAN</th>
                                     <th class="py-3">KECAMATAN</th>
-                                    <th class="py-3">NO HP</th>
                                     <th class="pe-4 py-3 text-end" style="width: 150px;">AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (empty($alternatif)): ?>
                                 <tr>
-                                    <td colspan="9" class="text-center text-muted py-5">
+                                    <td colspan="6" class="text-center text-muted py-5">
                                         <i class="bi bi-people fs-1 d-block mb-2"></i>
                                         Belum ada data alternatif
                                     </td>
@@ -81,12 +78,9 @@ $alternatif = $stmt->fetchAll();
                                 <tr>
                                     <td class="ps-4 fw-bold text-muted"><?php echo $no++; ?></td>
                                     <td class="fw-medium"><?php echo $row['nama']; ?></td>
-                                    <td><code><?php echo $row['nik']; ?></code></td>
                                     <td class="text-muted small"><?php echo $row['alamat']; ?></td>
-                                    <td><?php echo $row['rt_rw']; ?></td>
                                     <td><?php echo $row['kelurahan']; ?></td>
                                     <td><?php echo $row['kecamatan']; ?></td>
-                                    <td><?php echo $row['no_hp'] ?: '-'; ?></td>
                                     <td class="pe-4 text-end">
                                         <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-light btn-sm rounded-circle p-2 me-1 border shadow-sm">
                                             <i class="bi bi-pencil text-primary"></i>
