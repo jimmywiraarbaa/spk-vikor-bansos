@@ -35,6 +35,12 @@
             </ul>
         </li>
 
+        <li>
+            <a href="<?php echo baseUrl('pages/skala_penilaian/index.php'); ?>" class="<?php echo (strpos($_SERVER['PHP_SELF'], 'skala_penilaian') !== false) ? 'text-danger fw-bold' : ''; ?>">
+                <i class="bi bi-rulers"></i> Skala Penilaian
+            </a>
+        </li>
+
         <div class="menu-label">Analisis</div>
         <li>
             <a href="#prosesMenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex align-items-center justify-content-between">
@@ -52,11 +58,6 @@
                     <a href="<?php echo baseUrl('pages/ranking/index.php'); ?>">Ranking</a>
                 </li>
             </ul>
-        </li>
-        <li>
-            <a href="<?php echo baseUrl('pages/skala_penilaian/index.php'); ?>" class="<?php echo (strpos($_SERVER['PHP_SELF'], 'skala_penilaian') !== false) ? 'text-danger fw-bold' : ''; ?>">
-                <i class="bi bi-rulers"></i> Skala Penilaian
-            </a>
         </li>
         <?php endif; ?>
         <li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'laporan/') !== false) ? 'active' : ''; ?>">
