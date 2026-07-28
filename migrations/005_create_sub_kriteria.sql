@@ -1,23 +1,49 @@
 CREATE TABLE IF NOT EXISTS sub_kriteria (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kriteria_id INT NOT NULL,
-    kode VARCHAR(10) NOT NULL UNIQUE,
-    nama VARCHAR(100) NOT NULL,
-    bobot DECIMAL(5, 2) NOT NULL,
+    nama VARCHAR(255) NOT NULL,
+    bobot INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (kriteria_id) REFERENCES kriteria(id) ON DELETE CASCADE
 );
 
-INSERT IGNORE INTO sub_kriteria (kriteria_id, kode, nama, bobot) VALUES
-    (1, 'C1.1', 'Penghasilan per Bulan', 0.60),
-    (1, 'C1.2', 'Sumber Penghasilan', 0.40),
-    (2, 'C2.1', 'Jenis Pekerjaan', 0.50),
-    (2, 'C2.2', 'Status Pekerjaan', 0.50),
-    (3, 'C3.1', 'Jenis Lantai', 0.40),
-    (3, 'C3.2', 'Jenis Dinding', 0.30),
-    (3, 'C3.3', 'Luas Rumah', 0.30),
-    (4, 'C4.1', 'Jumlah Tanggungan', 0.60),
-    (4, 'C4.2', 'Status Pernikahan', 0.40),
-    (5, 'C5.1', 'Kepemilikan Tanah', 0.60),
-    (5, 'C5.2', 'Status Kepemilikan Rumah', 0.40);
+-- C1 Penghasilan (cost, Wi = 0.30)
+INSERT IGNORE INTO sub_kriteria (kriteria_id, nama, bobot) VALUES
+    (1, '> Rp 3.000.000', 1),
+    (1, 'Rp 2.000.001 - Rp 3.000.000', 2),
+    (1, 'Rp 1.000.001 - Rp 2.000.000', 3),
+    (1, 'Rp 500.001 - Rp 1.000.000', 4),
+    (1, '<= Rp 500.000', 5);
+
+-- C2 Pekerjaan (cost, Wi = 0.25)
+INSERT IGNORE INTO sub_kriteria (kriteria_id, nama, bobot) VALUES
+    (2, 'PNS/TNI/Polri', 1),
+    (2, 'Pegawai Swasta Tetap', 2),
+    (2, 'Wiraswasta', 3),
+    (2, 'Pekerja Harian Lepas', 4),
+    (2, 'Tidak Bekerja', 5);
+
+-- C3 Kondisi Rumah (cost, Wi = 0.15) — Kategori Gabungan
+INSERT IGNORE INTO sub_kriteria (kriteria_id, nama, bobot) VALUES
+    (3, 'Sangat Layak Huni', 1),
+    (3, 'Layak Huni', 2),
+    (3, 'Cukup Layak', 3),
+    (3, 'Kurang Layak', 4),
+    (3, 'Tidak Layak Huni', 5);
+
+-- C4 Jumlah Anak (benefit, Wi = 0.15)
+INSERT IGNORE INTO sub_kriteria (kriteria_id, nama, bobot) VALUES
+    (4, '0 - 1 orang', 1),
+    (4, '2 orang', 2),
+    (4, '3 orang', 3),
+    (4, '4 orang', 4),
+    (4, '> 4 orang', 5);
+
+-- C5 Kepemilikan Aset (cost, Wi = 0.15)
+INSERT IGNORE INTO sub_kriteria (kriteria_id, nama, bobot) VALUES
+    (5, 'Memiliki banyak aset berharga', 1),
+    (5, 'Memiliki beberapa aset', 2),
+    (5, 'Memiliki aset terbatas', 3),
+    (5, 'Sedikit aset', 4),
+    (5, 'Tidak memiliki aset', 5);

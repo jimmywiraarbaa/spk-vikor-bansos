@@ -6,12 +6,21 @@ include_once '../../templates/header.php';
 
 $alternatif = $pdo->query("SELECT * FROM alternatif ORDER BY nama ASC")->fetchAll();
 $kriteria = $pdo->query("SELECT * FROM kriteria ORDER BY kode ASC")->fetchAll();
-$subKriteria = $pdo->query("SELECT * FROM sub_kriteria ORDER BY kriteria_id, kode ASC")->fetchAll();
+$subKriteria = $pdo->query("SELECT * FROM sub_kriteria ORDER BY kriteria_id, bobot ASC")->fetchAll();
 
 $penilaianRows = $pdo->query("SELECT * FROM penilaian")->fetchAll();
+
+$skToKriteria = [];
+foreach ($subKriteria as $sk) {
+    $skToKriteria[$sk['id']] = $sk['kriteria_id'];
+}
+
 $penilaianData = [];
 foreach ($penilaianRows as $row) {
-    $penilaianData[$row['alternatif_id']][$row['sub_kriteria_id']] = (float) $row['nilai'];
+    $kId = $skToKriteria[$row['sub_kriteria_id']] ?? null;
+    if ($kId !== null) {
+        $penilaianData[$row['alternatif_id']][$kId] = (float) $row['nilai'];
+    }
 }
 
 $hasPenilaian = !empty($penilaianRows);
@@ -19,8 +28,8 @@ $hasEmptyCells = false;
 
 if ($hasPenilaian) {
     foreach ($alternatif as $alt) {
-        foreach ($subKriteria as $sk) {
-            if (!isset($penilaianData[$alt['id']][$sk['id']])) {
+        foreach ($kriteria as $k) {
+            if (!isset($penilaianData[$alt['id']][$k['id']])) {
                 $hasEmptyCells = true;
                 break 2;
             }
@@ -32,23 +41,11 @@ $vikorResult = null;
 $aggregated = [];
 
 if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
-    $subByKriteria = [];
-    foreach ($subKriteria as $sk) {
-        $subByKriteria[$sk['kriteria_id']][] = $sk;
-    }
 
     foreach ($alternatif as $alt) {
         $aggregated[$alt['id']] = [];
         foreach ($kriteria as $k) {
-            $weightedSum = 0;
-            if (isset($subByKriteria[$k['id']])) {
-                foreach ($subByKriteria[$k['id']] as $sk) {
-                    $bobot = (float) $sk['bobot'];
-                    $nilai = $penilaianData[$alt['id']][$sk['id']] ?? 0;
-                    $weightedSum += $bobot * $nilai;
-                }
-            }
-            $aggregated[$alt['id']][$k['id']] = $weightedSum;
+            $aggregated[$alt['id']][$k['id']] = $penilaianData[$alt['id']][$k['id']] ?? 0;
         }
     }
 
@@ -219,7 +216,7 @@ if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-header bg-white border-0 py-3">
-                    <h6 class="fw-bold mb-0"><i class="bi bi-table me-2 text-danger"></i>Matriks Agregasi (Bobot Terbobot Sub-Kriteria)</h6>
+                    <h6 class="fw-bold mb-0"><i class="bi bi-table me-2 text-danger"></i>Matriks Penilaian (Nilai per Kriteria)</h6>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">

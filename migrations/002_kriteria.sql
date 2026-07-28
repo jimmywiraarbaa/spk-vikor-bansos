@@ -40,8 +40,8 @@ VALUES (
     ),
     (
         'C5',
-        'Status Tanah',
+        'Kepemilikan Aset',
         'cost',
         0.15,
-        'Menumpang atau tanah sengketa lebih rentan daripada milik sendiri.'
+        'Aset yang dimiliki semakin kecil maka semakin layak untuk menerima.'
     );

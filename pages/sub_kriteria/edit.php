@@ -10,9 +10,9 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 $stmt = $pdo->prepare("
-    SELECT sk.*, k.kode as kriteria_kode, k.nama as kriteria_nama 
-    FROM sub_kriteria sk 
-    JOIN kriteria k ON sk.kriteria_id = k.id 
+    SELECT sk.*, k.kode as kriteria_kode, k.nama as kriteria_nama
+    FROM sub_kriteria sk
+    JOIN kriteria k ON sk.kriteria_id = k.id
     WHERE sk.id = ?
 ");
 $stmt->execute([$id]);
@@ -38,7 +38,12 @@ include_once '../../templates/header.php';
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="ms-auto d-flex align-items-center">
-                    <span class="fw-medium small"><?php echo $_SESSION['username']; ?></span>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <?php echo strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?>
+                        </div>
+                        <span class="fw-medium small"><?php echo $_SESSION['nama_lengkap']; ?></span>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -67,31 +72,28 @@ include_once '../../templates/header.php';
                         <form action="../../actions/sub_kriteria_action.php" method="POST">
                             <input type="hidden" name="id" value="<?php echo $subKriteria['id']; ?>">
                             <div class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="kriteria_id" class="form-label small fw-bold text-secondary">KRITERIA</label>
                                     <select name="kriteria_id" id="kriteria_id" class="form-select bg-light border-0" required>
                                         <option value="">Pilih Kriteria...</option>
                                         <?php foreach ($kriteriaList as $k): ?>
                                             <option value="<?php echo $k['id']; ?>" <?php echo $k['id'] == $subKriteria['kriteria_id'] ? 'selected' : ''; ?>>
-                                                <?php echo $k['kode']; ?> - <?php echo $k['nama']; ?>
+                                                <?php echo $k['kode']; ?> - <?php echo $k['nama']; ?> (<?php echo $k['sifat']; ?>)
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="kode" class="form-label small fw-bold text-secondary">KODE SUB-KRITERIA</label>
-                                    <input type="text" name="kode" id="kode" class="form-control bg-light border-0" value="<?php echo $subKriteria['kode']; ?>" required>
-                                </div>
                                 <div class="col-md-8">
                                     <label for="nama" class="form-label small fw-bold text-secondary">NAMA SUB-KRITERIA</label>
-                                    <input type="text" name="nama" id="nama" class="form-control bg-light border-0" value="<?php echo $subKriteria['nama']; ?>" required>
+                                    <input type="text" name="nama" id="nama" class="form-control bg-light border-0" value="<?php echo htmlspecialchars($subKriteria['nama']); ?>" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="bobot" class="form-label small fw-bold text-secondary">BOBOT</label>
+                                    <label for="bobot" class="form-label small fw-bold text-secondary">BOBOT (Nilai 1-5)</label>
                                     <div class="input-group">
-                                        <input type="number" step="0.01" min="0.01" max="1.00" name="bobot" id="bobot" class="form-control bg-light border-0" value="<?php echo $subKriteria['bobot']; ?>" required>
-                                        <span class="input-group-text bg-light border-0"><i class="bi bi-percent small"></i></span>
+                                        <input type="number" min="1" max="5" name="bobot" id="bobot" class="form-control bg-light border-0" value="<?php echo $subKriteria['bobot']; ?>" required>
+                                        <span class="input-group-text bg-light border-0"><i class="bi bi-star small"></i></span>
                                     </div>
+                                    <div class="form-text small">Nilai 1 = terendah, 5 = tertinggi</div>
                                 </div>
                                 <div class="col-12 mt-4">
                                     <button type="submit" name="edit" class="btn btn-danger px-5 py-2 rounded-pill shadow-sm">

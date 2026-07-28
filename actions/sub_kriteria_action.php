@@ -7,13 +7,12 @@ $indexPage = 'pages/sub_kriteria/index.php';
 
 if (isset($_POST['tambah'])) {
     $kriteriaId = $_POST['kriteria_id'];
-    $kode = $_POST['kode'];
-    $nama = $_POST['nama'];
+    $nama = trim($_POST['nama']);
     $bobot = $_POST['bobot'];
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO sub_kriteria (kriteria_id, kode, nama, bobot) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$kriteriaId, $kode, $nama, $bobot]);
+        $stmt = $pdo->prepare("INSERT INTO sub_kriteria (kriteria_id, nama, bobot) VALUES (?, ?, ?)");
+        $stmt->execute([$kriteriaId, $nama, $bobot]);
 
         $_SESSION['success'] = "Sub-kriteria berhasil ditambahkan.";
         redirect($indexPage);
@@ -26,13 +25,12 @@ if (isset($_POST['tambah'])) {
 if (isset($_POST['edit'])) {
     $id = $_POST['id'];
     $kriteriaId = $_POST['kriteria_id'];
-    $kode = $_POST['kode'];
-    $nama = $_POST['nama'];
+    $nama = trim($_POST['nama']);
     $bobot = $_POST['bobot'];
 
     try {
-        $stmt = $pdo->prepare("UPDATE sub_kriteria SET kriteria_id = ?, kode = ?, nama = ?, bobot = ? WHERE id = ?");
-        $stmt->execute([$kriteriaId, $kode, $nama, $bobot, $id]);
+        $stmt = $pdo->prepare("UPDATE sub_kriteria SET kriteria_id = ?, nama = ?, bobot = ? WHERE id = ?");
+        $stmt->execute([$kriteriaId, $nama, $bobot, $id]);
 
         $_SESSION['success'] = "Sub-kriteria berhasil diperbarui.";
         redirect($indexPage);

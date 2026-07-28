@@ -6,28 +6,18 @@ include_once '../../templates/header.php';
 
 $alternatif = $pdo->query("SELECT * FROM alternatif ORDER BY nama ASC")->fetchAll();
 
-$subKriteria = $pdo->query("
-    SELECT sk.*, k.kode as kriteria_kode, k.nama as kriteria_nama, k.sifat
-    FROM sub_kriteria sk
-    JOIN kriteria k ON sk.kriteria_id = k.id
-    ORDER BY k.kode ASC, sk.kode ASC
-")->fetchAll();
+$kriteria = $pdo->query("SELECT * FROM kriteria ORDER BY kode ASC")->fetchAll();
 
-$subKriteriaIds = array_column($subKriteria, 'id');
-
-$penilaianData = [];
-if (!empty($alternatif) && !empty($subKriteriaIds)) {
-    $stmt = $pdo->query("SELECT * FROM penilaian");
-    $rows = $stmt->fetchAll();
-    foreach ($rows as $row) {
-        $penilaianData[$row['alternatif_id']][$row['sub_kriteria_id']] = $row['nilai'];
-    }
+$subKriteriaByKriteria = [];
+$stmt = $pdo->query("SELECT * FROM sub_kriteria ORDER BY kriteria_id, bobot ASC");
+foreach ($stmt->fetchAll() as $sk) {
+    $subKriteriaByKriteria[$sk['kriteria_id']][] = $sk;
 }
 
-$skalaData = [];
-$skalaRows = $pdo->query("SELECT * FROM skala_penilaian ORDER BY sub_kriteria_id, nilai ASC")->fetchAll();
-foreach ($skalaRows as $row) {
-    $skalaData[$row['sub_kriteria_id']][] = $row;
+$penilaianData = [];
+$rows = $pdo->query("SELECT * FROM penilaian")->fetchAll();
+foreach ($rows as $row) {
+    $penilaianData[$row['alternatif_id']][$row['sub_kriteria_id']] = true;
 }
 ?>
 
@@ -44,8 +34,8 @@ foreach ($skalaRows as $row) {
                     <div class="d-flex align-items-center">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
                             <?php echo strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?>
-                            </div>
-                            <span class="fw-medium small"><?php echo $_SESSION['nama_lengkap']; ?></span>
+                        </div>
+                        <span class="fw-medium small"><?php echo $_SESSION['nama_lengkap']; ?></span>
                     </div>
                 </div>
             </div>
@@ -86,12 +76,12 @@ foreach ($skalaRows as $row) {
                         <a href="<?php echo baseUrl('pages/alternatif/tambah.php'); ?>" class="btn btn-danger btn-sm rounded-pill px-4">Tambah Alternatif</a>
                     </div>
                 </div>
-            <?php elseif (empty($subKriteria)): ?>
+            <?php elseif (empty($kriteria) || empty($subKriteriaByKriteria)): ?>
                 <div class="card border-0 shadow-sm">
                     <div class="card-body text-center py-5">
                         <i class="bi bi-list-task fs-1 text-muted d-block mb-2"></i>
-                        <p class="text-muted mb-2">Belum ada data sub-kriteria.</p>
-                        <a href="<?php echo baseUrl('pages/sub_kriteria/tambah.php'); ?>" class="btn btn-danger btn-sm rounded-pill px-4">Tambah Sub-Kriteria</a>
+                        <p class="text-muted mb-2">Belum ada data kriteria/sub-kriteria.</p>
+                        <a href="<?php echo baseUrl('pages/sub_kriteria/index.php'); ?>" class="btn btn-danger btn-sm rounded-pill px-4">Lihat Sub-Kriteria</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -104,11 +94,11 @@ foreach ($skalaRows as $row) {
                                     <tr>
                                         <th class="ps-4 py-3" style="width: 40px;">NO</th>
                                         <th class="py-3" style="min-width: 150px;">NAMA ALTERNATIF</th>
-                                        <?php foreach ($subKriteria as $sk): ?>
-                                        <th class="py-3 text-center" style="min-width: 140px;">
-                                            <small class="fw-bold text-danger d-block"><?php echo $sk['kode']; ?></small>
-                                            <small class="d-block" title="<?php echo $sk['nama']; ?>"><?php echo $sk['nama']; ?></small>
-                                            <small class="text-muted d-block">(<?php echo $sk['kriteria_kode']; ?>)</small>
+                                        <?php foreach ($kriteria as $k): ?>
+                                        <th class="py-3 text-center" style="min-width: 180px;">
+                                            <small class="fw-bold text-danger d-block"><?php echo $k['kode']; ?></small>
+                                            <small class="d-block"><?php echo $k['nama']; ?></small>
+                                            <small class="text-muted d-block">(<?php echo $k['sifat']; ?>)</small>
                                         </th>
                                         <?php endforeach; ?>
                                     </tr>
@@ -118,22 +108,18 @@ foreach ($skalaRows as $row) {
                                     <tr>
                                         <td class="ps-4 fw-bold text-muted"><?php echo $no++; ?></td>
                                         <td class="fw-medium"><?php echo $alt['nama']; ?></td>
-                                        <?php foreach ($subKriteria as $sk): ?>
+                                        <?php foreach ($kriteria as $k): ?>
                                         <td class="text-center">
-                                            <input type="hidden" name="alternatif_ids[]" value="<?php echo $alt['id']; ?>">
-                                            <input type="hidden" name="sub_kriteria_ids[]" value="<?php echo $sk['id']; ?>">
-                                            <?php if (isset($skalaData[$sk['id']])): ?>
-                                            <select name="nilai[<?php echo $alt['id']; ?>][<?php echo $sk['id']; ?>]" class="form-select form-select-sm bg-light border-0">
-                                                <option value="">Pilih</option>
-                                                <?php foreach ($skalaData[$sk['id']] as $s): ?>
-                                                <option value="<?php echo $s['nilai']; ?>" <?php echo (isset($penilaianData[$alt['id']][$sk['id']]) && $penilaianData[$alt['id']][$sk['id']] == $s['nilai']) ? 'selected' : ''; ?>>
-                                                    <?php echo $s['nilai']; ?> - <?php echo $s['keterangan']; ?>
+                                            <?php $options = $subKriteriaByKriteria[$k['id']] ?? []; ?>
+                                            <select name="penilaian[<?php echo $alt['id']; ?>][<?php echo $k['id']; ?>]" class="form-select form-select-sm bg-light border-0">
+                                                <option value="">Pilih...</option>
+                                                <?php foreach ($options as $sk): ?>
+                                                <option value="<?php echo $sk['id']; ?>"
+                                                    <?php echo isset($penilaianData[$alt['id']][$sk['id']]) ? 'selected' : ''; ?>>
+                                                    <?php echo $sk['bobot']; ?> - <?php echo $sk['nama']; ?>
                                                 </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <?php else: ?>
-                                            <input type="number" name="nilai[<?php echo $alt['id']; ?>][<?php echo $sk['id']; ?>]" class="form-control form-control-sm bg-light border-0 text-center" min="1" max="5" value="<?php echo isset($penilaianData[$alt['id']][$sk['id']]) ? $penilaianData[$alt['id']][$sk['id']] : ''; ?>" placeholder="1-5">
-                                            <?php endif; ?>
                                         </td>
                                         <?php endforeach; ?>
                                     </tr>

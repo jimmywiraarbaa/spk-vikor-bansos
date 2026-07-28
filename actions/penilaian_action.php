@@ -9,13 +9,18 @@ if (isset($_POST['simpan'])) {
 
         $pdo->exec("DELETE FROM penilaian");
 
-        $nilaiData = $_POST['nilai'];
-        $stmt = $pdo->prepare("INSERT INTO penilaian (alternatif_id, sub_kriteria_id, nilai) VALUES (?, ?, ?)");
+        $penilaianData = $_POST['penilaian'] ?? [];
 
-        foreach ($nilaiData as $alternatifId => $subKriterias) {
-            foreach ($subKriterias as $subKriteriaId => $nilai) {
-                if ($nilai !== '' && $nilai !== null) {
-                    $stmt->execute([$alternatifId, $subKriteriaId, $nilai]);
+        $stmtLookup = $pdo->prepare("SELECT bobot FROM sub_kriteria WHERE id = ?");
+        $stmtInsert = $pdo->prepare("INSERT INTO penilaian (alternatif_id, sub_kriteria_id, nilai) VALUES (?, ?, ?)");
+
+        foreach ($penilaianData as $alternatifId => $kriterias) {
+            foreach ($kriterias as $kriteriaId => $subKriteriaId) {
+                if (!empty($subKriteriaId)) {
+                    $stmtLookup->execute([$subKriteriaId]);
+                    $row = $stmtLookup->fetch();
+                    $nilai = $row ? $row['bobot'] : 0;
+                    $stmtInsert->execute([$alternatifId, $subKriteriaId, $nilai]);
                 }
             }
         }

@@ -24,7 +24,7 @@ $alternatifFiltered = $alternatifStmt->fetchAll();
 $alternatifIds = array_column($alternatifFiltered, 'id');
 $altIdPlaceholders = implode(',', array_fill(0, count($alternatifIds), '?'));
 
-$subKriteria = $pdo->query("SELECT * FROM sub_kriteria ORDER BY kriteria_id, kode ASC")->fetchAll();
+$subKriteria = $pdo->query("SELECT * FROM sub_kriteria ORDER BY kriteria_id, bobot ASC")->fetchAll();
 
 $aggregated = [];
 $penilaianRows = [];
@@ -33,28 +33,23 @@ if (!empty($alternatifIds)) {
     $penStmt->execute($alternatifIds);
     $penilaianRows = $penStmt->fetchAll();
 
-    $penData = [];
-    foreach ($penilaianRows as $row) {
-        $penData[$row['alternatif_id']][$row['sub_kriteria_id']] = (float) $row['nilai'];
+    $skToKriteria = [];
+    foreach ($subKriteria as $sk) {
+        $skToKriteria[$sk['id']] = $sk['kriteria_id'];
     }
 
-    $subByKriteria = [];
-    foreach ($subKriteria as $sk) {
-        $subByKriteria[$sk['kriteria_id']][] = $sk;
+    $penData = [];
+    foreach ($penilaianRows as $row) {
+        $kId = $skToKriteria[$row['sub_kriteria_id']] ?? null;
+        if ($kId !== null) {
+            $penData[$row['alternatif_id']][$kId] = (float) $row['nilai'];
+        }
     }
 
     foreach ($alternatifFiltered as $alt) {
         $aggregated[$alt['id']] = [];
         foreach ($kriteria as $k) {
-            $weightedSum = 0;
-            if (isset($subByKriteria[$k['id']])) {
-                foreach ($subByKriteria[$k['id']] as $sk) {
-                    $bobot = (float) $sk['bobot'];
-                    $nilai = $penData[$alt['id']][$sk['id']] ?? 0;
-                    $weightedSum += $bobot * $nilai;
-                }
-            }
-            $aggregated[$alt['id']][$k['id']] = $weightedSum;
+            $aggregated[$alt['id']][$k['id']] = $penData[$alt['id']][$k['id']] ?? 0;
         }
     }
 }
