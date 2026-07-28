@@ -59,7 +59,24 @@ foreach ($skala as $row) {
                         </ol>
                     </nav>
                 </div>
+                <a href="tambah.php" class="btn btn-danger btn-sm px-3 py-2 rounded-pill shadow-sm">
+                    <i class="bi bi-plus-lg me-1"></i> Tambah Skala
+                </a>
             </div>
+
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show mb-4" role="alert">
+                    <i class="bi bi-check-circle me-2"></i> <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show mb-4" role="alert">
+                    <i class="bi bi-exclamation-circle me-2"></i> <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
 
             <?php if (empty($grouped)): ?>
             <div class="card border-0 shadow-sm">

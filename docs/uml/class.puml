@@ -1,0 +1,86 @@
+@startuml
+!define table(x) class x << (T,#FFE4E1) >>
+
+table(User) {
+  + id: INT
+  + username: VARCHAR(50)
+  + email: VARCHAR(100)
+  + password: VARCHAR(255)
+  + nama_lengkap: VARCHAR(100)
+  + role: ENUM(admin, operator, kepala_dinsos)
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+  --
+  + login(username, password): bool
+  + logout(): void
+}
+
+table(Kriteria) {
+  + id: INT
+  + kode: VARCHAR(10)
+  + nama: VARCHAR(100)
+  + sifat: ENUM(cost, benefit)
+  + bobot: DECIMAL(5,2)
+  + penjelasan: TEXT
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+table(SubKriteria) {
+  + id: INT
+  + kriteria_id: INT
+  + kode: VARCHAR(10)
+  + nama: VARCHAR(100)
+  + bobot: DECIMAL(5,2)
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+table(SkalaPenilaian) {
+  + id: INT
+  + sub_kriteria_id: INT
+  + nilai: INT
+  + keterangan: VARCHAR(255)
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+table(Alternatif) {
+  + id: INT
+  + nama: VARCHAR(100)
+  + nik: VARCHAR(20)
+  + alamat: TEXT
+  + rt_rw: VARCHAR(10)
+  + kelurahan: VARCHAR(50)
+  + kecamatan: VARCHAR(50)
+  + no_hp: VARCHAR(20)
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+table(Penilaian) {
+  + id: INT
+  + alternatif_id: INT
+  + sub_kriteria_id: INT
+  + nilai: DECIMAL(15,2)
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+table(HasilPerhitungan) {
+  + id: INT
+  + alternatif_id: INT
+  + nilai_s: DECIMAL(15,6)
+  + nilai_r: DECIMAL(15,6)
+  + nilai_q: DECIMAL(15,6)
+  + ranking: INT
+  + created_at: TIMESTAMP
+  + updated_at: TIMESTAMP
+}
+
+Kriteria ||--o{ SubKriteria : memiliki
+SubKriteria ||--o{ SkalaPenilaian : memiliki
+SubKriteria ||--o{ Penilaian : dinilai
+Alternatif ||--o{ Penilaian : dinilai
+Alternatif ||--o| HasilPerhitungan : memiliki
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+title Activity Diagram - Alur VIKOR Bansos
+
+start
+:Login Sistem;
+:Kelola Data Master;
+if (Data Master Lengkap?\n(Kriteria, Sub-Kriteria,\nAlternatif, Skala)) then (ya)
+  :Input Penilaian;
+  if (Semua alternatif\ndinilai?) then (ya)
+    :Hitung VIKOR;
+    :Tampilkan Matriks Agregasi;
+    :Tentukan f* dan f- per Kriteria;
+    :Hitung Nilai S (Utility);
+    :Hitung Nilai R (Regret);
+    :Hitung Nilai Q (VIKOR Index);
+    :Urutkan Ranking (Q ascending);
+    if (Hasil sudah benar?) then (ya)
+      :Simpan Hasil ke Database;
+      :Lihat Ranking;
+      :Cetak Laporan;
+      stop
+    else (tidak)
+      :Edit Penilaian;
+      ->
+
+    endif
+  else (tidak)
+    :Lengkapi Penilaian;
+    -->
+  endif
+else (tidak)
+  :Lengkapi Data Master;
+  -->
+endif
+@enduml

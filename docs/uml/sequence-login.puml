@@ -1,0 +1,24 @@
+@startuml
+title Sequence Diagram - Login
+
+actor "User" as user
+participant "Login Page" as loginPage
+participant "Auth Action" as authAction
+participant "Session" as session
+participant "Database" as db
+
+user -> loginPage : input username & password
+loginPage -> authAction : POST login(username, password)
+authAction -> db : SELECT * FROM users WHERE username = ?
+db --> authAction : user data (hashed password)
+authAction -> authAction : verify password (bcrypt)
+alt password valid
+  authAction -> session : set session variables
+  session --> authAction : session stored
+  authAction --> loginPage : redirect to dashboard
+  loginPage --> user : tampilkan dashboard
+else password invalid
+  authAction --> loginPage : error message
+  loginPage --> user : "Username/Password salah"
+end
+@enduml

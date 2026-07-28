@@ -1,0 +1,21 @@
+@startuml
+title Sequence Diagram - Input Penilaian
+
+actor "Operator" as operator
+participant "Form Penilaian" as form
+participant "Penilaian Action" as action
+participant "Database" as db
+
+operator -> form : akses halaman penilaian
+form -> db : SELECT alternatif, sub_kriteria,\n  skala_penilaian
+db --> form : data master
+form --> operator : tampilkan matriks penilaian\n  (alternatif x sub_kriteria)
+operator -> form : pilih nilai (1-5) untuk\n  tiap alternatif & sub_kriteria
+operator -> form : klik "Simpan"
+form -> action : POST data penilaian
+action -> db : DELETE FROM penilaian\n  WHERE alternatif_id IN (...)
+action -> db : INSERT penilaian\n  (alternatif_id, sub_kriteria_id, nilai)
+db --> action : data tersimpan
+action --> form : redirect + pesan sukses
+form --> operator : "Penilaian berhasil disimpan"
+@enduml
