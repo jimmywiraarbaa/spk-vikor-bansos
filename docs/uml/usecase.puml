@@ -16,7 +16,6 @@ rectangle "Sistem Pendukung Keputusan\nVIKOR Bansos" {
   usecase "Kelola Kriteria" as UC07
   usecase "Kelola Sub-Kriteria" as UC08
   usecase "Kelola Alternatif" as UC09
-  usecase "Kelola Skala Penilaian" as UC10
 
   usecase "Input Penilaian" as UC11
   usecase "Hitung VIKOR" as UC12
@@ -36,7 +35,6 @@ admin --> UC06
 admin --> UC07
 admin --> UC08
 admin --> UC09
-admin --> UC10
 admin --> UC11
 admin --> UC12
 admin --> UC13
@@ -52,7 +50,6 @@ operator --> UC05
 operator --> UC07
 operator --> UC08
 operator --> UC09
-operator --> UC10
 operator --> UC11
 operator --> UC12
 operator --> UC13

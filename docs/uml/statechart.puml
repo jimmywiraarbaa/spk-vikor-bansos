@@ -1,7 +1,7 @@
 @startuml
 title Statechart Diagram - Siklus Perhitungan VIKOR
 
-[*] --> DataMasterLengkap : Definisikan Kriteria,\n  Sub-Kriteria, Alternatif,\n  dan Skala Penilaian
+[*] --> DataMasterLengkap : Definisikan Kriteria,\n  Sub-Kriteria, dan Alternatif
 
 DataMasterLengkap --> PenilaianDiinput : Input penilaian\n  untuk semua alternatif
 
@@ -21,7 +21,7 @@ PerhitunganSelesai --> PenilaianDiinput : Edit penilaian
 
 LaporanDicetak --> DataMasterLengkap : Siklus baru\n  (periode berikutnya)
 
-state DataMasterLengkap : Kriteria, Sub-Kriteria,\n  Alternatif, Skala Penilaian\ntelah terdefinisi
+state DataMasterLengkap : Kriteria, Sub-Kriteria,\n  Alternatif telah terdefinisi
 state PenilaianDiinput : Semua alternatif\ntelah dinilai
 state PerhitunganSelesai : Nilai S, R, Q\ntelah dihitung\ndan ditampilkan
 state HasilDisimpan : Hasil perhitungan\ntersimpan di database

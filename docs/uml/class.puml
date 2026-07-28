@@ -29,18 +29,8 @@ table(Kriteria) {
 table(SubKriteria) {
   + id: INT
   + kriteria_id: INT
-  + kode: VARCHAR(10)
   + nama: VARCHAR(100)
-  + bobot: DECIMAL(5,2)
-  + created_at: TIMESTAMP
-  + updated_at: TIMESTAMP
-}
-
-table(SkalaPenilaian) {
-  + id: INT
-  + sub_kriteria_id: INT
-  + nilai: INT
-  + keterangan: VARCHAR(255)
+  + bobot: INT
   + created_at: TIMESTAMP
   + updated_at: TIMESTAMP
 }
@@ -79,7 +69,6 @@ table(HasilPerhitungan) {
 }
 
 Kriteria ||--o{ SubKriteria : memiliki
-SubKriteria ||--o{ SkalaPenilaian : memiliki
 SubKriteria ||--o{ Penilaian : dinilai
 Alternatif ||--o{ Penilaian : dinilai
 Alternatif ||--o| HasilPerhitungan : memiliki

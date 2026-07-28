@@ -6,10 +6,10 @@ participant "Halaman Perhitungan" as page
 participant "Database" as db
 
 operator -> page : akses halaman perhitungan
-page -> db : SELECT semua alternatif, kriteria,\n  sub_kriteria, penilaian
+page -> db : SELECT alternatif, kriteria,\n  sub_kriteria, penilaian
 db --> page : data mentah
-page -> page : build aggregated matrix\n  (alt_id x kriteria_id)
-page -> page : tentukan f* (max/min) dan f- (min/max)\n  per kriteria (cost/benefit)
+page -> page : petakan penilaian per alternatif\n  ke nilai per kriteria via sub_kriteria
+page -> page : tentukan f* (min) dan f- (max)\n  per kriteria (cost/benefit)
 page -> page : hitung S (utility)\n  dan R (regret) per alternatif
 page -> page : hitung Q (VIKOR index)\n  dan ranking
 page --> operator : tampilkan tabel S, R, Q, Ranking

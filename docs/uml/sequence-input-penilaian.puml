@@ -7,14 +7,14 @@ participant "Penilaian Action" as action
 participant "Database" as db
 
 operator -> form : akses halaman penilaian
-form -> db : SELECT alternatif, sub_kriteria,\n  skala_penilaian
+form -> db : SELECT alternatif, sub_kriteria
 db --> form : data master
-form --> operator : tampilkan matriks penilaian\n  (alternatif x sub_kriteria)
-operator -> form : pilih nilai (1-5) untuk\n  tiap alternatif & sub_kriteria
+form --> operator : tampilkan form penilaian\n  (dropdown sub-kriteria per kriteria)
+operator -> form : pilih sub-kriteria untuk\n  tiap alternatif & kriteria
 operator -> form : klik "Simpan"
-form -> action : POST data penilaian
-action -> db : DELETE FROM penilaian\n  WHERE alternatif_id IN (...)
-action -> db : INSERT penilaian\n  (alternatif_id, sub_kriteria_id, nilai)
+form -> action : POST data penilaian\n  penilaian[alt_id][kriteria_id]
+action -> db : DELETE FROM penilaian
+action -> db : INSERT penilaian\n  (alternatif_id, sub_kriteria_id, nilai=bobot)
 db --> action : data tersimpan
 action --> form : redirect + pesan sukses
 form --> operator : "Penilaian berhasil disimpan"
