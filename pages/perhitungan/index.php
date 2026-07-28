@@ -2,7 +2,6 @@
 require_once '../../includes/auth_helper.php';
 require_once '../../includes/db.php';
 checkLogin();
-include_once '../../templates/header.php';
 
 $alternatif = $pdo->query("SELECT * FROM alternatif ORDER BY nama ASC")->fetchAll();
 $kriteria = $pdo->query("SELECT * FROM kriteria ORDER BY kode ASC")->fetchAll();
@@ -153,6 +152,7 @@ if ($hasPenilaian && !$hasEmptyCells && !empty($alternatif)) {
         }
     }
 }
+include_once '../../templates/header.php';
 ?>
 <div id="wrapper">
     <?php include_once '../../templates/sidebar.php'; ?>
