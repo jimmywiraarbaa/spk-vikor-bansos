@@ -1,0 +1,51 @@
+@startsalt
+title Halaman Perhitungan VIKOR
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      > Hasil Perhitungan <
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Perhitungan VIKOR
+    Dashboard > Perhitungan
+    ==================================================
+    (T) Matriks Penilaian (Nilai per Kriteria)
+    {#
+      .              | C1     | C2     | C3     | C4
+      Budi Santoso   | 5.0000 | 5.0000 | 3.0000 | 4.0000
+      Siti Aminah    | 4.0000 | 4.0000 | 2.0000 | 3.0000
+      Joko Widodo    | 3.0000 | 3.0000 | 4.0000 | 2.0000
+      f* (Best)      | 3.0000 | 3.0000 | 2.0000 | 2.0000
+      f- (Worst)     | 5.0000 | 5.0000 | 4.0000 | 4.0000
+    #}
+    ==================================================
+    (T) Nilai S, R, Q & Ranking
+    {#
+      . | RANK | ALTERNATIF     | S      | R      | Q
+        | 1    | Budi Santoso   | 0.0000 | 0.0000 | 0.0000
+        | 2    | Siti Aminah    | 0.4500 | 0.2500 | 0.3500
+        | 3    | Joko Widodo    | 0.8200 | 0.4000 | 0.6100
+    #}
+                                              [    Simpan Hasil    ]
+  }
+}
+@endsalt

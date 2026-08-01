@@ -1,0 +1,43 @@
+@startsalt
+title Halaman Dashboard
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Dashboard Overview
+    Selamat datang kembali di panel kendali SPK VIKOR.
+    ==================================================
+    {+
+      TOTAL KRITERIA   |  ALTERNATIF  |  PERHITUNGAN  |  USER AKTIF
+      [n]              |  [n]         |  [n]          |  [n]
+    +}
+    ==================================================
+    {
+      INFORMASI SISTEM              |  [LOGO]
+      Deskripsi sistem SPK VIKOR... |  Dinas Sosial
+      (i) Mulai dari Data Kriteria  |  Kab. Merangin
+    }
+  }
+}
+@endsalt

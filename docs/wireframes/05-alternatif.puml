@@ -1,0 +1,39 @@
+@startsalt
+title Halaman Data Alternatif
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      > Data Alternatif <
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Data Alternatif
+    Dashboard > Alternatif                        [+ Tambah Alternatif]
+    ==================================================
+    {#
+      . | NO | NAMA             | ALAMAT          | KELURAHAN  | KECAMATAN | AKSI
+        | 1  | Budi Santoso     | Jl. Mawar       | Pasar Senen| Bangko    | [edit][del]
+        | 2  | Siti Aminah      | Jl. Melati      | Tanjung    | Bangko    | [edit][del]
+        | 3  | Joko Widodo      | Jl. Anggrek     | Sungai Benu| Batang Asai| [edit][del]
+    #}
+  }
+}
+@endsalt

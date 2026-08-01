@@ -1,0 +1,39 @@
+@startsalt
+title Halaman Manajemen User
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      > Manajemen User <
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Data User
+    Dashboard > User                              [+ Tambah User]
+    ==================================================
+    {#
+      . | NO | USERNAME  | EMAIL             | ROLE            | TANGGAL DAFTAR | AKSI
+        | 1  | admin     | admin@dinsos.id   | [Admin]         | 01 Jan 2026    | [edit][del]
+        | 2  | operator1 | op1@dinsos.id     | [Operator]      | 05 Jan 2026    | [edit][del]
+        | 3  | kadinsos  | kadin@dinsos.id   | [Kepala Dinsos] | 10 Jan 2026    | [edit]
+    #}
+  }
+}
+@endsalt

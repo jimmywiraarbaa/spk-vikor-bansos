@@ -1,0 +1,29 @@
+@startsalt
+title Halaman Login
+{
+  {
+    SPK VIKOR
+    ==================================================
+    SISTEM PENDUKUNG KEPUTUSAN
+    PENENTUAN PENERIMA BLT
+    MENGGUNAKAN METODE VIKOR
+    --------------------------------------------------
+    [       LOGO DINAS SOSIAL       ]
+    --------------------------------------------------
+    DINAS SOSIAL, PP & PA
+    KABUPATEN MERANGIN
+  }
+  ||
+  {
+    Selamat Datang
+    Silakan masuk untuk mengelola data
+    --------------------------------------------------
+    USERNAME
+    "                          "
+    PASSWORD
+    "                          " [< eye]
+    --------------------------------------------------
+    [        Login Sekarang        ]
+  }
+}
+@endsalt

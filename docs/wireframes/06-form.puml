@@ -1,0 +1,45 @@
+@startsalt
+title Halaman Form (Tambah / Edit) - Representasi Semua Form
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    {
+      Tambah / Edit Data                              [< Kembali]
+      --------------------------------------------------
+      ==================================================
+      {+
+        NAMA LENGKAP
+        "                                                "
+        ALAMAT
+        "                                                "
+        KELURAHAN/DESA            |  KECAMATAN
+        "                  "      |  "                  "
+        --------------------------------------------------
+        [    Simpan    ]
+      +}
+    }
+  }
+}
+@endsalt

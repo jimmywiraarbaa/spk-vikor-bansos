@@ -1,0 +1,40 @@
+@startsalt
+title Halaman Data Sub-Kriteria
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      > Data Sub-Kriteria <
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Data Sub-Kriteria
+    Dashboard > Sub-Kriteria                      [+ Tambah Sub-Kriteria]
+    ==================================================
+    {#
+      . | KODE | KRITERIA | NAMA SUB-KRITERIA    | NILAI | AKSI
+        | SK1  | C1       | < 500.000            | 5     | [edit][del]
+        | SK2  | C1       | 500rb - 1Jt          | 4     | [edit][del]
+        | SK3  | C2       | 4 orang ke atas      | 5     | [edit][del]
+        | SK4  | C2       | 3 orang              | 4     | [edit][del]
+    #}
+  }
+}
+@endsalt

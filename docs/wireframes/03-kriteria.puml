@@ -1,0 +1,40 @@
+@startsalt
+title Halaman Data Kriteria
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      > Data Kriteria <
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Data Kriteria
+    Dashboard > Kriteria                          [+ Tambah Kriteria]
+    ==================================================
+    {#
+      .       | KODE | NAMA KRITERIA   | SIFAT   | BOBOT (Wi) | PENJELASAN       | AKSI
+              | C1    | Penghasilan     | Cost    | 0.30 (30%) | -                | [edit][del]
+              | C2    | Tanggungan      | Benefit | 0.25 (25%) | -                | [edit][del]
+              | C3    | Kondisi Rumah   | Cost    | 0.20 (20%) | -                | [edit][del]
+              | C4    | Pekerjaan       | Cost    | 0.25 (25%) | -                | [edit][del]
+    #}
+  }
+}
+@endsalt

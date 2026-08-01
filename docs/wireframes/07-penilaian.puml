@@ -1,0 +1,40 @@
+@startsalt
+title Halaman Input Penilaian
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      > Input Penilaian <
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Input Penilaian
+    Dashboard > Penilaian
+    ==================================================
+    {#
+      . | NO | NAMA ALTERNATIF  | C1 (Penghasilan)  | C2 (Tanggungan) | C3 (Rumah) | C4 (Pekerjaan)
+        | 1  | Budi Santoso     | ^5 - <500rb^      | ^5 - >=4 org^   | ^3 - Baik^ | ^4 - Buruh^
+        | 2  | Siti Aminah      | ^4 - 500rb-1Jt^   | ^4 - 3 org^     | ^2 - Sedang^ | ^3 - Wiraswasta^
+        | 3  | Joko Widodo      | ^Pilih...^        | ^Pilih...^      | ^Pilih...^ | ^Pilih...^
+    #}
+                                          [    Simpan Penilaian    ]
+  }
+}
+@endsalt

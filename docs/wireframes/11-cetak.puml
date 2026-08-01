@@ -1,0 +1,43 @@
+@startsalt
+title Halaman Cetak Laporan (Print View)
+{
+  [ Cetak ]
+  ==================================================
+            PEMERINTAH KABUPATEN MERANGIN
+                DINAS SOSIAL
+   Jl. Sultan Thaha, Bangko, Kabupaten Merangin, Jambi
+   Telp: (0743) 21107 | Email: dinasos@meranginkab.go.id
+  ==================================================
+       LAPORAN HASIL PERHITUNGAN SPK VIKOR
+        PENENTUAN PENERIMA BANTUAN SOSIAL
+
+  Tanggal: 29 Juli 2026
+  Filter : Semua Kelurahan
+
+  A. Rekap Penilaian (Matriks Agregasi)
+  {#
+    . | NO | ALTERNATIF     | C1     | C2     | C3     | C4
+      | 1  | Budi Santoso   | 5.0000 | 5.0000 | 3.0000 | 4.0000
+      | 2  | Siti Aminah    | 4.0000 | 4.0000 | 2.0000 | 3.0000
+  #}
+
+  --------------------------------------------------
+  ( page break )
+  --------------------------------------------------
+
+  B. Hasil Perhitungan VIKOR
+  {#
+    . | RANK | NAMA          | ALAMAT     | KELURAHAN | NILAI S | NILAI R | NILAI Q
+      | 1    | Budi Santoso  | Jl. Mawar  | Senen     | 0.0000  | 0.0000  | 0.0000
+      | 2    | Siti Aminah   | Jl. Melati | Tanjung   | 0.4500  | 0.2500  | 0.3500
+  #}
+
+                                 Mengetahui,
+                              Kepala Dinas Sosial
+
+
+
+                              ________________________
+                              NIP. ____________________
+}
+@endsalt

@@ -1,0 +1,27 @@
+@startuml
+title Statechart Diagram - Input Data Penilaian
+
+[*] --> MenungguDataMaster
+
+MenungguDataMaster --> AlternatifBelumAda    : [alternatif kosong]
+MenungguDataMaster --> KriteriaBelumLengkap  : [kriteria/sub-kriteria kosong]
+MenungguDataMaster --> MengisiPenilaian      : [master lengkap]
+
+AlternatifBelumAda --> MengisiPenilaian      : tambah alternatif
+KriteriaBelumLengkap --> MengisiPenilaian    : lengkapi kriteria & sub-kriteria
+
+MengisiPenilaian --> MenyimpanPenilaian      : klik "Simpan Penilaian"
+MenyimpanPenilaian --> PenilaianTersimpan    : [transaksi sukses]
+MenyimpanPenilaian --> MengisiPenilaian      : [transaksi gagal / rollback]
+
+PenilaianTersimpan --> MengisiPenilaian     : edit penilaian
+PenilaianTersimpan --> [*]                  : lanjut ke Perhitungan VIKOR
+
+state MenungguDataMaster   : Menunggu data master\n  (alternatif, kriteria, sub-kriteria)
+state AlternatifBelumAda   : Belum ada alternatif\n  -> arahkan ke tambah alternatif
+state KriteriaBelumLengkap : Kriteria/sub-kriteria belum didefinisikan
+state MengisiPenilaian     : Operator mengisi matriks\n  dropdown per alternatif x kriteria
+state MenyimpanPenilaian   : DELETE penilaian lalu INSERT\n  dalam transaksi
+state PenilaianTersimpan   : Penilaian tersimpan di DB
+
+@enduml

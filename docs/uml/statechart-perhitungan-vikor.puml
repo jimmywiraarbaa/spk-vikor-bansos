@@ -1,0 +1,38 @@
+@startuml
+title Statechart Diagram - Perhitungan VIKOR
+
+[*] --> MemvalidasiDataHitung
+
+MemvalidasiDataHitung --> PenilaianKosong        : [!hasPenilaian]
+MemvalidasiDataHitung --> PenilaianBelumLengkap   : [ada sel kosong / hasEmptyCells]
+MemvalidasiDataHitung --> TentukanFStarFWorst     : [data lengkap]
+
+PenilaianKosong --> [*]                           : kembali ke Input Data
+PenilaianBelumLengkap --> [*]                     : kembali ke Input Data
+
+TentukanFStarFWorst --> HitungSR                  : f* (best) & f- (worst)\n  per kriteria (benefit/cost)
+HitungSR --> HitungQ                              : S (utility) & R (regret)\n  per alternatif
+HitungQ --> UrutkanRanking                        : Q (indeks VIKOR, v=0.5)
+UrutkanRanking --> HasilDitampilkan               : urutkan by Q ascending
+
+HasilDitampilkan --> MenyimpanHasil               : klik "Simpan Hasil"
+MenyimpanHasil --> HasilTersimpan                 : [INSERT hasil_perhitungan sukses]
+MenyimpanHasil --> HasilDitampilkan               : [INSERT gagal]
+
+HasilTersimpan --> MemvalidasiDataHitung          : hitung ulang
+HasilTersimpan --> LaporanDicetak                 : cetak laporan
+LaporanDicetak --> [*]
+
+state MemvalidasiDataHitung : Cek kelengkapan matriks penilaian
+state PenilaianKosong       : Belum ada penilaian sama sekali
+state PenilaianBelumLengkap : Masih ada sel penilaian kosong
+state TentukanFStarFWorst   : Hitung nilai terbaik & terburuk\n  per kriteria
+state HitungSR              : Hitung S dan R per alternatif
+state HitungQ               : Hitung indeks Q (v=0.5)
+state UrutkanRanking        : Ranking berdasarkan nilai Q
+state HasilDitampilkan      : Tabel matriks, f*, f-,\n  S, R, Q & Ranking ditampilkan
+state MenyimpanHasil        : DELETE hasil_perhitungan\n  lalu INSERT
+state HasilTersimpan        : Hasil tersimpan di DB
+state LaporanDicetak        : Laporan final dicetak
+
+@enduml

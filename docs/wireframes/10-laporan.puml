@@ -1,0 +1,51 @@
+@startsalt
+title Halaman Laporan
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    > Laporan <
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Laporan
+    Dashboard > Laporan
+        ^Semua Kelurahan^                              [Cetak Laporan]
+    ==================================================
+    {+
+      { (i) Total Alternatif [n] } | { (i) Total Penilaian [n] } | { (v) Total Hasil VIKOR [n] }
+    +}
+    ==================================================
+    (T) Rekap Penilaian
+    {#
+      . | NO | ALTERNATIF     | C1     | C2     | C3     | C4
+        | 1  | Budi Santoso   | 5.0000 | 5.0000 | 3.0000 | 4.0000
+        | 2  | Siti Aminah    | 4.0000 | 4.0000 | 2.0000 | 3.0000
+    #}
+    ==================================================
+    (T) Hasil VIKOR
+    {#
+      . | RANK | NAMA          | ALAMAT      | KELURAHAN | NILAI S | NILAI R | NILAI Q
+        | (1)  | Budi Santoso  | Jl. Mawar   | Senen     | 0.0000  | 0.0000  | 0.0000
+        | 2    | Siti Aminah   | Jl. Melati  | Tanjung   | 0.4500  | 0.2500  | 0.3500
+    #}
+  }
+}
+@endsalt

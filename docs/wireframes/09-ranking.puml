@@ -1,0 +1,43 @@
+@startsalt
+title Halaman Ranking Hasil VIKOR
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      > Ranking <
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      Profil
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Ranking Hasil VIKOR
+    Dashboard > Ranking                           [Export PDF]
+    ==================================================
+    {+
+      { (i) Total Alternatif  [n] } | { (v) Sudah Dihitung  [n] }
+    +}
+    ==================================================
+    {#
+      . | RANKING | NAMA          | ALAMAT      | NILAI S | NILAI R | NILAI Q
+        | (1)     | Budi Santoso  | Jl. Mawar   | 0.0000  | 0.0000  | 0.0000
+        | 2       | Siti Aminah   | Jl. Melati  | 0.4500  | 0.2500  | 0.3500
+        | 3       | Joko Widodo   | Jl. Anggrek | 0.8200  | 0.4000  | 0.6100
+    #}
+  }
+}
+@endsalt

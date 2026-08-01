@@ -1,0 +1,56 @@
+@startsalt
+title Halaman Profil Saya
+{
+  {
+    [LOGO]
+    SPK VIKOR
+    Dinsos Merangin
+    --------------------------------------------------
+    ^Dashboard^
+    DATA MASTER
+      Data Kriteria
+      Data Sub-Kriteria
+      Data Alternatif
+    ANALISIS
+      Input Penilaian
+      Hasil Perhitungan
+      Ranking
+    ^Laporan^
+    SISTEM
+      Manajemen User
+      > Profil <
+    ^Logout^
+  }
+  ||
+  {
+    {[=] .........                                  (A) Nama User}
+    --------------------------------------------------
+    Profil Saya
+    Dashboard > Profil
+    ==================================================
+    {
+              ( A )
+        Nama Lengkap
+        @username
+        [Admin]
+      ==================================================
+      (edit) Edit Profil
+      --------------------------------------------------
+      {+
+        NAMA LENGKAP
+        "                          "
+        USERNAME                    |  EMAIL
+        "            "              |  "            "
+        --------------------------------------------------
+        Kosongkan password jika tidak ingin mengubah
+        PASSWORD LAMA
+        "                          "
+        PASSWORD BARU              |  KONFIRMASI PASSWORD
+        "            "             |  "            "
+        --------------------------------------------------
+        [    Simpan Perubahan    ]
+      +}
+    }
+  }
+}
+@endsalt

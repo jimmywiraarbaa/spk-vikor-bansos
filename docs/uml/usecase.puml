@@ -1,11 +1,13 @@
 @startuml
 left to right direction
 skinparam packageStyle rectangle
+skinparam padding 5
+skinparam linetype polyline
 actor "Admin" as admin
 actor "Operator" as operator
 actor "Kepala Dinas\nSosial" as kadinsos
 
-rectangle "Sistem Pendukung Keputusan\nVIKOR Bansos" {
+rectangle "Sistem Pendukung Keputusan\nVIKOR Bansos" 
   usecase "Login" as UC01
   usecase "Logout" as UC02
   usecase "Lupa Password" as UC03
@@ -26,41 +28,41 @@ rectangle "Sistem Pendukung Keputusan\nVIKOR Bansos" {
   usecase "Cetak Laporan" as UC16
 }
 
-admin --> UC01
-admin --> UC02
-admin --> UC03
-admin --> UC04
-admin --> UC05
-admin --> UC06
-admin --> UC07
-admin --> UC08
-admin --> UC09
-admin --> UC11
-admin --> UC12
-admin --> UC13
-admin --> UC14
-admin --> UC15
-admin --> UC16
+admin ------> UC01
+admin ------> UC02
+admin ------> UC03
+admin ------> UC04
+admin ------> UC05
+admin ------> UC06
+admin ------> UC07
+admin ------> UC08
+admin ------> UC09
+admin ------> UC11
+admin ------> UC12
+admin ------> UC13
+admin ------> UC14
+admin ------> UC15
+admin ------> UC16
 
-operator --> UC01
-operator --> UC02
-operator --> UC03
-operator --> UC04
-operator --> UC05
-operator --> UC07
-operator --> UC08
-operator --> UC09
-operator --> UC11
-operator --> UC12
-operator --> UC13
-operator --> UC14
-operator --> UC15
-operator --> UC16
+operator ------> UC01
+operator ------> UC02
+operator ------> UC03
+operator ------> UC04
+operator ------> UC05
+operator ------> UC07
+operator ------> UC08
+operator ------> UC09
+operator ------> UC11
+operator ------> UC12
+operator ------> UC13
+operator ------> UC14
+operator ------> UC15
+operator ------> UC16
 
-kadinsos --> UC01
-kadinsos --> UC02
-kadinsos --> UC15
-kadinsos --> UC16
+kadinsos ------> UC01
+kadinsos ------> UC02
+kadinsos ------> UC15
+kadinsos ------> UC16
 
 note right of UC06 : hanya admin
 note right of UC12 : termasuk menentukan f*, f-,\nmenghitung S, R, Q,\ndan perankingan
