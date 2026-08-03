@@ -110,8 +110,8 @@ $hasData = !empty($alternatifFiltered);
                             <?php endforeach; ?>
                         </select>
                     </form>
-                    <a href="cetak.php<?php echo $selectedKelurahan !== '' ? '?kelurahan=' . urlencode($selectedKelurahan) : ''; ?>" target="_blank" class="btn btn-danger btn-sm rounded-pill px-4 shadow-sm">
-                        <i class="bi bi-printer me-1"></i> Cetak Laporan
+                    <a href="pdf.php<?php echo $selectedKelurahan !== '' ? '?kelurahan=' . urlencode($selectedKelurahan) : ''; ?>" target="_blank" class="btn btn-danger btn-sm rounded-pill px-4 shadow-sm">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Preview PDF
                     </a>
                 </div>
             </div>
